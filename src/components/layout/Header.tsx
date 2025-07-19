@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 mt-10 bg-[#0a0a36]/70 backdrop-blur-sm px-6 md:mx-28  md:m-10 p-3 flex justify-between items-center rounded-full shadow-lg  transition-all duration-300 text-white/60`}
+        className={`fixed top-0 left-0 right-0 z-50 mt-10 bg-[#05051a]/70 backdrop-blur-sm px-6 md:mx-28  md:m-10 p-3 flex justify-between items-center rounded-full shadow-lg  transition-all duration-300 text-white/60`}
       >
         <div className="flex items-center space-x-4">
           <img src={Logo} alt="Logo" className="h-8 w-auto" />
@@ -131,7 +131,7 @@ const Header = () => {
                 <a
                   key={item.name}
                   href={item.path}
-                  target="_blank"
+               
                   rel="noopener noreferrer"
                   className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
