@@ -9,7 +9,6 @@ const Header = () => {
   const paypalDonationUrl =
     "https://www.paypal.com/donate/?hosted_button_id=5VXV68NC6TC9U";
 
-
   // Lock scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
@@ -34,7 +33,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 mt-10 bg-[#05051a]/70 backdrop-blur-sm px-6 md:mx-28  md:m-10 p-3 flex justify-between items-center rounded-full shadow-lg  transition-all duration-300 text-white/60`}
+        className={`fixed top-0 left-0 right-0 z-50 mt-5
+           bg-[#05051a]/70 backdrop-blur-sm px-6 md:mx-28  md:m-8 p-3 flex justify-between items-center rounded-full shadow-lg  transition-all duration-300 text-white/60`}
       >
         <div className="flex items-center space-x-4">
           <img src={Logo} alt="Logo" className="h-8 w-auto" />
@@ -42,17 +42,27 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              target={item.path.startsWith("http") ? "_blank" : "_self"}
-              rel={item.path.startsWith("http") ? "noopener noreferrer" : ""}
-              className="relative tracking-wide text-xs hover:text-white/100 transition-colors duration-300 group"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.path.startsWith("http") ? (
+              <a
+                key={item.id}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative tracking-wide text-xs hover:text-white/100 transition-colors duration-300 group"
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link
+                key={item.id}
+                to={item.path}
+                className="relative tracking-wide text-xs hover:text-white/100 transition-colors duration-300 group"
+              >
+                {item.name}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Desktop Buttons */}
@@ -83,7 +93,11 @@ const Header = () => {
       </header>
 
       {/* Slide-in Mobile Menu */}
-      <div className={`fixed inset-0 z-50 lg:hidden pointer-events-none`}>
+      <div
+        className={`fixed inset-0 z-50 lg:hidden ${
+          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
         {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-black/50 backdrop-blur-lg transition-opacity duration-300 ${
@@ -110,45 +124,35 @@ const Header = () => {
             <img src={Logo} alt="Logo" className="h-8" />
           </div>
 
-          {/* <nav className="flex-1 px-6 space-y-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav> */}
-
           <nav className="flex-1 px-6 space-y-2">
-            {navItems.map((item) =>
-              item.path.startsWith("http") ? (
-                <a
-                  key={item.name}
-                  href={item.path}
-               
-                  rel="noopener noreferrer"
-                  className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ) : (
+            {navItems.map((item) => {
+              if (item.path.startsWith("http")) {
+                return (
+                  <a
+                    key={item.id}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                );
+              }
+              return (
                 <Link
-                  key={item.name}
+                  key={item.id}
                   to={item.path}
                   className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
                 >
                   {item.name}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           <div className="p-6 pt-2 space-y-3">
