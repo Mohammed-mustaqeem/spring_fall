@@ -96,31 +96,35 @@ const AboutUsSection = () => {
       className="py-10 relative overflow-hidden  bg-gradient-to-b from-blue-700 via-black to-blue-700"
     >
       <div>
-        <div className=" text-white px-5 py-14">
-          <div className="max-w-7xl mx-auto flex flex-col space-y-7 items-center">
-            {/* Row 1: pill image + “Unique Ideas” */}
-            <div className="flex items-center space-x-6">
+        <div className="text-white px-4 sm:px-6 md:px-10 py-10 sm:py-14">
+          <div className="max-w-7xl mx-auto flex flex-col space-y-8 items-center">
+            {/* Row 1: pill image + “Unique Ideas” */}
+            <div className="flex flex-col lg:flex-row items-center lg:space-x-6 space-y-6 lg:space-y-0 text-center lg:text-left">
               <img
                 src={aboutus}
                 alt="Team discussion"
-                className="w-[320px] h-[96px] object-cover rounded-full"
+                className="w-[280px] sm:w-[300px] lg:w-[320px] h-[80px] sm:h-[90px] lg:h-[96px] object-cover rounded-full"
               />
-              <h1 className="flex items-baseline text-[70px] leading-none">
-                <span className="font-bold">Our Mission </span>
-                <span className="font-light ml-4">& Vision</span>
+              <h1 className="flex flex-wrap justify-center lg:justify-start items-baseline text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] leading-none">
+                <span className="font-bold">Our Mission</span>
+                <span className="font-light ml-2 sm:ml-3 md:ml-4">
+                  & Vision
+                </span>
               </h1>
             </div>
 
             {/* Row 2: “For Your Business.” + button */}
-            <div className="flex items-center space-x-6">
-              <h2 className="flex items-baseline text-[70px] leading-none">
+            <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-y-0 lg:space-x-6 text-center lg:text-left">
+              <h2 className="flex flex-wrap justify-center lg:justify-start items-baseline text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] leading-none">
                 <span className="font-normal">About</span>
-                <span className="font-bold mx-4">Spring/Fall</span>
+                <span className="font-bold mx-2 sm:mx-3 md:mx-4">
+                  Spring/Fall
+                </span>
                 <span className="font-light">USA</span>
               </h2>
 
-              <button className="bg-white text-black px-10 py-4 rounded-full flex items-center space-x-4 hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all">
-                <span className="text-sm font-medium tracking-widest">
+              <button className="bg-white text-black px-8 sm:px-10 py-3 sm:py-4 rounded-full flex items-center justify-center space-x-3 hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all">
+                <span className="text-xs sm:text-sm font-medium tracking-widest">
                   WHAT WE DO
                 </span>
                 <div className="bg-black p-2 rounded-full text-white">
