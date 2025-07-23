@@ -1,105 +1,111 @@
-
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Clock, Calendar, Users } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, BookOpen, Clock, Calendar, Users } from "lucide-react";
+import degree from "../../assets/images/degree.jpg"
 
 const StudyUSASection = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2 }
     );
 
-    const section = document.getElementById('study-usa-section');
-    if (section) {
-      observer.observe(section);
-    }
+    const section = document.getElementById("study-usa-section");
+    if (section) observer.observe(section);
 
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
+    return () => section && observer.unobserve(section);
   }, []);
 
   const benefits = [
     {
-      icon: <BookOpen className="text-visa-blue" size={24} />,
-      title: "World-Class Education",
-      description: "Access to some of the world's top-ranked universities and diverse academic programs."
+      icon: <BookOpen size={22} className="text-visa-blue" />,
+      title: "Top-Tier Education",
+      desc: "Learn from globally recognized universities and programs.",
     },
     {
-      icon: <Clock className="text-visa-blue" size={24} />,
-      title: "OPT Opportunities",
-      description: "Up to 12 months of Optional Practical Training (OPT) with additional 24 months for STEM fields."
+      icon: <Clock size={22} className="text-visa-blue" />,
+      title: "OPT Benefits",
+      desc: "Get practical work experience during and after study.",
     },
     {
-      icon: <Calendar className="text-visa-blue" size={24} />,
-      title: "Flexible Start Dates",
-      description: "Multiple intake periods throughout the year (Spring, Summer, Fall semesters)."
+      icon: <Calendar size={22} className="text-visa-blue" />,
+      title: "Flexible Intakes",
+      desc: "Choose between Spring, Summer, or Fall semesters.",
     },
     {
-      icon: <Users className="text-visa-blue" size={24} />,
-      title: "Global Networking",
-      description: "Build international connections with students and professionals from around the world."
-    }
+      icon: <Users size={22} className="text-visa-blue" />,
+      title: "Global Network",
+      desc: "Connect with students and professionals worldwide.",
+    },
   ];
 
   return (
-    <section id="study-usa-section" className="py-16 bg-gradient-to-br from-blue-50 to-white">
-      <div className="container-custom mx-auto">
+    <section
+      id="study-usa-section"
+      className="py-20  bg-gradient-to-b from-blue-950 via-black to-blue-950"
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-10'}`}>
-            <img 
-              src="https://images.unsplash.com/photo-1496469888073-80de7e952517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" 
-              alt="Students on a university campus" 
-              className="rounded-xl shadow-lg w-full h-auto"
-            />
-          </div>
-          
-          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-(-10)'}`}>
-            <h2 className="text-3xl font-serif font-bold text-visa-navy">
-              Study in the <span className="text-visa-blue">USA</span>
+          {/* Left content */}
+          <div
+            className={`transition-all duration-1000 ease-in-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
+            <h2 className="text-4xl font-bold text-white mb-4 leading-tight">
+              Your Gateway to{" "}
+              <span className="text-white/85">Studying in the USA</span>
             </h2>
-            
-            <p className="mt-4 text-gray-700">
-              Studying in the United States offers unparalleled educational opportunities, cultural experiences, 
-              and career prospects. The F-1 student visa is your gateway to accessing these benefits and embarking 
-              on a transformative academic journey.
+            <p className="text-lg text-gray-400 mb-8 max-w-xl">
+              Discover new opportunities in education, work, and culture. The
+              F-1 visa opens the door to a world-class education and beyond.
             </p>
-            
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {benefits.map((benefit, index) => (
-                <div 
-                  key={index} 
-                  className={`bg-white p-5 rounded-lg shadow-sm border border-gray-100 transition-all duration-500 hover:shadow-md delay-${index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+
+            <div className="grid sm:grid-cols-2 gap-6 mb-8">
+              {benefits.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-4 bg-gray-50 rounded-xl p-4 shadow-sm hover:shadow-md transition"
                 >
-                  <div className="flex items-start">
-                    <div className="mt-1 mr-4">
-                      {benefit.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-visa-navy">{benefit.title}</h3>
-                      <p className="mt-1 text-sm text-gray-600">{benefit.description}</p>
-                    </div>
+                  <div className="mt-1">{item.icon}</div>
+                  <div>
+                    <h4 className="text-md font-semibold text-visa-navy">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-800 mt-1">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
-            
-            <Link 
+
+            <Link
               to="/f1-visa-info"
-              className="mt-8 inline-flex items-center px-6 py-3 bg-visa-blue text-white font-medium rounded-md hover:bg-visa-navy transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-visa-blue text-white hover:bg-visa-navy transition-all font-medium"
             >
-              F-1 Visa Requirements
-              <ArrowRight size={16} className="ml-2" />
+              Learn About F-1 Visa
+              <ArrowRight size={18} />
             </Link>
+          </div>
+
+          {/* Right image */}
+          <div
+            className={`transition-all duration-1000 ease-in-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
+            <div className="rounded-3xl overflow-hidden shadow-xl">
+              <img
+                src={degree}
+                alt="Students on campus"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

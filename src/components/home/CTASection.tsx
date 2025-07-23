@@ -30,7 +30,7 @@ const CTASection = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-5 mt-6">
           {/* Modern Pill Button with Arrow */}
           <Link to="/resources">
-            <button className="group inline-flex items-center justify-between px-6 py-3 bg-yellow-400 text-black font-medium text-sm rounded-full hover:bg-yellow-300 transition-all duration-300 shadow-md">
+            <button className="group inline-flex items-center justify-between px-6 py-3 bg-white/70 text-black font-medium text-sm rounded-full hover:bg-white transition-all duration-300 shadow-md">
               <span className="mr-3">Access Free Resources</span>
               <span className="bg-black text-white rounded-full p-2">
                 <ArrowRight
