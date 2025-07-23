@@ -88,7 +88,7 @@ const PartnersSection = () => {
   return (
     <section
       id="affiliates-section"
-      className="py-20 bg-gradient-to-b from-white to-blue-50"
+      className="py-20 bg-gradient-to-b from-blue-700 via-black to-blue-950"
     >
       <div className="container-custom mx-auto">
         <div
@@ -96,27 +96,26 @@ const PartnersSection = () => {
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Users size={28} className="text-visa-blue" />
-            <h2 className="text-4xl font-serif font-bold text-visa-navy inline-block">
-              Our <span className="text-gradient">Affiliates</span>
+          <div className="flex items-center justify-center gap-3  mb-4">
+            <Users size={28} className="text-white" />
+            <h2 className="text-4xl font-serif font-bold text-white inline-block">
+              Our <span className="text-white/90">Affiliates</span>
             </h2>
           </div>
-          <div className="w-24 h-1 bg-visa-blue mx-auto mb-6"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+          <div className="w-24 h-1 bg-white mx-auto mb-6"></div>
+          <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">
             Our trusted partnerships ensure you receive expert guidance and
             support throughout your visa journey.
           </p>
         </div>
 
         <div className="mb-20">
-          <h3 className="text-2xl font-medium text-visa-navy mb-10 text-center">
-            <span className="border-b-2 border-visa-blue pb-2">
+          <h3 className="text-2xl font-medium text-white mb-10 text-center">
+            <span className="border-b-2 border-white pb-2">
               University Affiliates
             </span>
           </h3>
 
-          {/* Horizontal University Scrolling with Hover Effects */}
           <div className="flex justify-center gap-12 flex-wrap">
             {universities.map((university, index) => (
               <div
@@ -131,36 +130,32 @@ const PartnersSection = () => {
                 onMouseEnter={() => setHoveredUniversity(index)}
                 onMouseLeave={() => setHoveredUniversity(null)}
               >
-                <div className="group relative flex flex-col items-center">
+                <div className="group relative flex flex-col items-center min-h-[320px]">
                   <div
                     className={`
                       relative z-10 rounded-full p-2 border-2 border-transparent
                       bg-gradient-to-br from-white to-blue-50 overflow-hidden 
                       shadow-lg transition-all duration-500
-                      ${
-                        hoveredUniversity === index
-                          ? "scale-110 border-visa-blue"
-                          : "scale-100"
-                      }
+                      ${hoveredUniversity === index ? "border-visa-blue" : ""}
                     `}
                   >
                     <div
-                      className="
-                      bg-white rounded-full p-4 flex items-center justify-center 
-                      h-32 w-32 overflow-hidden transition-all duration-300 
-                      group-hover:shadow-inner"
+                      className={`
+                        bg-white rounded-full p-4 flex items-center justify-center 
+                        h-32 w-32 overflow-hidden transition-transform duration-300 
+                        transform ${
+                          hoveredUniversity === index
+                            ? "scale-110"
+                            : "scale-100"
+                        }
+                      `}
                     >
                       <img
                         src={university.logo}
                         alt={`${university.name} logo`}
-                        className={`object-contain max-h-20 max-w-20 transition-all duration-500 ${
-                          hoveredUniversity === index
-                            ? "scale-110"
-                            : "scale-100"
-                        }`}
+                        className="object-contain max-h-20 max-w-20"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-blue-100 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-full"></div>
                   </div>
 
                   <div className="mt-4 text-center max-w-[220px]">
@@ -169,12 +164,13 @@ const PartnersSection = () => {
                     </h4>
                     <div
                       className={`
-                        overflow-hidden transition-all duration-500 ease-in-out
+                        h-24 mt-2 transition-opacity duration-500 ease-in-out 
                         ${
                           hoveredUniversity === index
-                            ? "max-h-32 opacity-100 mt-2"
-                            : "max-h-0 opacity-0"
+                            ? "opacity-100"
+                            : "opacity-0"
                         }
+                        pointer-events-none
                       `}
                     >
                       <p className="text-gray-600 text-sm mb-3">
@@ -191,20 +187,6 @@ const PartnersSection = () => {
                       </a>
                     </div>
                   </div>
-
-                  {/* Animated decorative circle */}
-                  <div
-                    className={`
-                      absolute -z-10 rounded-full bg-blue-50
-                      transition-all duration-700 ease-in-out
-                      ${
-                        hoveredUniversity === index
-                          ? "scale-100 opacity-100"
-                          : "scale-0 opacity-0"
-                      }
-                      -bottom-5 left-1/2 -translate-x-1/2 w-40 h-40
-                    `}
-                  ></div>
                 </div>
               </div>
             ))}
@@ -233,26 +215,28 @@ const PartnersSection = () => {
                 onMouseEnter={() => setHoveredOfficer(index)}
                 onMouseLeave={() => setHoveredOfficer(null)}
               >
-                <div className="relative group">
-                  {/* Animated gradient background */}
+                <div className="relative group min-h-[320px]">
                   <div
                     className={`
                       absolute inset-0 bg-gradient-to-br from-visa-blue/5 to-visa-navy/10 
-                      rounded-lg -z-10 transition-all duration-500 group-hover:scale-110
-                      ${hoveredOfficer === index ? "opacity-100" : "opacity-0"}
+                      rounded-lg -z-10 transition-transform duration-500 
+                      ${
+                        hoveredOfficer === index
+                          ? "scale-105 opacity-100"
+                          : "opacity-0 scale-100"
+                      }
                     `}
                   ></div>
 
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-5">
-                      {/* Animating ring */}
                       <div
                         className={`
-                        absolute inset-0 rounded-full 
-                        bg-gradient-to-r from-visa-blue to-visa-gold 
-                        animate-spin-slow opacity-0 group-hover:opacity-100
-                        transition-opacity duration-300
-                      `}
+                          absolute inset-0 rounded-full 
+                          bg-gradient-to-r from-visa-blue to-visa-gold 
+                          animate-spin-slow opacity-0 group-hover:opacity-100
+                          transition-opacity duration-300
+                        `}
                       ></div>
 
                       <div className="absolute inset-0.5 bg-white rounded-full"></div>
@@ -284,13 +268,12 @@ const PartnersSection = () => {
 
                     <div
                       className={`
-                      transition-all duration-500 ease-in-out overflow-hidden 
-                      ${
-                        hoveredOfficer === index
-                          ? "max-h-20 opacity-100"
-                          : "max-h-0 opacity-0"
-                      }
-                    `}
+                        h-16 transition-opacity duration-500 ease-in-out 
+                        ${
+                          hoveredOfficer === index ? "opacity-100" : "opacity-0"
+                        }
+                        pointer-events-none
+                      `}
                     >
                       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg inline-block">
                         <span className="inline-block bg-white px-3 py-1.5 rounded-full text-visa-blue font-medium shadow-sm text-sm">

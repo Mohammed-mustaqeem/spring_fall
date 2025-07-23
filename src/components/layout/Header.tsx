@@ -68,10 +68,10 @@ const Header = () => {
         {/* Desktop Buttons */}
         <div className="hidden lg:flex items-center space-x-3">
           <Link to="/community">
-            <Button className="bg-white text-xs hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all text-black flex items-center duration-300 rounded-full">
+            {/* <Button className="bg-white text-xs hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all text-black flex items-center duration-300 rounded-full">
               <Send size={18} className="mr-0" />
               Get Free Guidance
-            </Button>
+            </Button> */}
           </Link>
           <Button
             className="bg-white text-xs hover:bg-white hover:shadow-md hover:shadow-white transition-all text-black flex items-center duration-300 rounded-full"
