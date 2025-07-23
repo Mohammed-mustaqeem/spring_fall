@@ -1,129 +1,159 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-visa-navy text-white pt-16 pb-8">
-      <div className="container-custom mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <Link to="/" className="flex items-center">
-              <span className="text-white font-serif font-bold text-2xl">Spring/Fall</span>
-              <span className="text-visa-gold font-serif font-bold text-2xl ml-1">USA</span>
+    <footer className="bg-black text-white px-6 py-16">
+      <div className="max-w-7xl mx-auto space-y-16">
+        {/* Top: Company Info */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12">
+          {/* Brand & Description */}
+          <div className="flex-1 space-y-4">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 text-3xl font-bold tracking-wide"
+            >
+              <span className="text-white font-serif">Spring/Fall</span>
+              <span className="text-yellow-400 font-serif">USA</span>
             </Link>
-            <p className="mt-4 text-gray-300">
-              Helping international students achieve their dreams of studying in the USA with free F-1 visa guidance.
+            <p className="text-gray-400 max-w-sm">
+              Helping international students achieve their dreams of studying in
+              the USA with free F-1 visa guidance.
             </p>
-            <div className="flex space-x-4 mt-6">
-              <a href="#" className="text-gray-300 hover:text-visa-gold transition-colors">
+            <div className="flex space-x-4 pt-2">
+              <a href="#" className="hover:text-yellow-400 transition-colors">
                 <Facebook size={20} />
-                <span className="visually-hidden">Facebook</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-visa-gold transition-colors">
+              <a href="#" className="hover:text-yellow-400 transition-colors">
                 <Twitter size={20} />
-                <span className="visually-hidden">Twitter</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-visa-gold transition-colors">
+              <a href="#" className="hover:text-yellow-400 transition-colors">
                 <Instagram size={20} />
-                <span className="visually-hidden">Instagram</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-visa-gold transition-colors">
+              <a href="#" className="hover:text-yellow-400 transition-colors">
                 <Linkedin size={20} />
-                <span className="visually-hidden">LinkedIn</span>
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-visa-gold transition-colors">About Us</Link>
+                <Link to="/about" className="hover:text-yellow-400">
+                  About Us
+                </Link>
               </li>
               <li>
-                <Link to="/f1-visa-info" className="text-gray-300 hover:text-visa-gold transition-colors">F-1 Visa Information</Link>
+                <Link to="/f1-visa-info" className="hover:text-yellow-400">
+                  F-1 Visa Information
+                </Link>
               </li>
               <li>
-                <Link to="/interview-prep" className="text-gray-300 hover:text-visa-gold transition-colors">Interview Preparation</Link>
+                <Link to="/interview-prep" className="hover:text-yellow-400">
+                  Interview Preparation
+                </Link>
               </li>
               <li>
-                <Link to="/visa-experiences" className="text-gray-300 hover:text-visa-gold transition-colors">Visa Experiences</Link>
+                <Link to="/visa-experiences" className="hover:text-yellow-400">
+                  Visa Experiences
+                </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-gray-300 hover:text-visa-gold transition-colors">Resources</Link>
+                <Link to="/resources" className="hover:text-yellow-400">
+                  Resources
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Resources</h3>
-            <ul className="space-y-3">
+            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
               <li>
-                <Link to="/f1-visa-info" className="text-gray-300 hover:text-visa-gold transition-colors">F-1 Visa Requirements</Link>
+                <Link to="/f1-visa-info" className="hover:text-yellow-400">
+                  F-1 Visa Requirements
+                </Link>
               </li>
               <li>
-                <Link to="/interview-prep" className="text-gray-300 hover:text-visa-gold transition-colors">Interview Questions</Link>
+                <Link to="/interview-prep" className="hover:text-yellow-400">
+                  Interview Questions
+                </Link>
               </li>
               <li>
-                <Link to="/resources#checklist" className="text-gray-300 hover:text-visa-gold transition-colors">Document Checklist</Link>
+                <Link
+                  to="/resources#checklist"
+                  className="hover:text-yellow-400"
+                >
+                  Document Checklist
+                </Link>
               </li>
               <li>
-                <Link to="/resources#faq" className="text-gray-300 hover:text-visa-gold transition-colors">FAQs</Link>
+                <Link to="/resources#faq" className="hover:text-yellow-400">
+                  FAQs
+                </Link>
               </li>
               <li>
-                <Link to="/resources#timeline" className="text-gray-300 hover:text-visa-gold transition-colors">Visa Timeline</Link>
+                <Link
+                  to="/resources#timeline"
+                  className="hover:text-yellow-400"
+                >
+                  Visa Timeline
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Uniportal */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Uniportal</h3>
-            <ul className="space-y-3">
+          {/* Uniportal & Newsletter */}
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold mb-4">Uniportal</h3>
+            <ul className="mb-6 text-gray-400 text-sm space-y-2">
               <li>
-                <Link to="/uniportal" className="text-gray-300 hover:text-visa-gold transition-colors">
+                <Link to="/uniportal" className="hover:text-yellow-400">
                   Access Portal
                 </Link>
               </li>
             </ul>
-            <div className="mt-6">
-              <h4 className="font-semibold mb-2">Developed with love by PROX</h4>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="px-4 py-2 w-full text-black rounded-l-md focus:outline-none"
-                />
-                <button className="bg-visa-gold hover:bg-amber-500 text-visa-navy px-4 py-2 rounded-r-md transition-colors">
-                  Join
-                </button>
-              </div>
-            </div>
+            <h4 className="font-semibold text-sm mb-2">
+              Developed with love by PROX
+            </h4>
+            <form className="flex">
+              <input
+                type="email"
+                placeholder="Your email"
+                className="flex-grow px-4 py-2 rounded-l-full text-black focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-r-full transition"
+              >
+                Join
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © {currentYear} Spring/Fall USA. All rights reserved.
-          </p>
-          <div className="mt-4 md:mt-0">
-            <ul className="flex space-x-6 text-sm">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-visa-gold transition-colors">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-visa-gold transition-colors">Terms of Service</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-visa-gold transition-colors">Cookies</a>
-              </li>
-            </ul>
+        {/* Divider */}
+        <div className="h-px w-full bg-gray-800" />
+
+        {/* Bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 space-y-4 md:space-y-0">
+          <p>© {currentYear} Spring/Fall USA. All rights reserved.</p>
+          <div className="flex space-x-6">
+            <a href="#" className="hover:text-yellow-400">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-yellow-400">
+              Terms of Service
+            </a>
+            <a href="#" className="hover:text-yellow-400">
+              Cookies
+            </a>
           </div>
         </div>
       </div>
