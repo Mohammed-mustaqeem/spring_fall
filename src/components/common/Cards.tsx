@@ -1,15 +1,19 @@
-import styled from "styled-components";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const aboutContent = [
   {
     title: "Our Mission",
     description:
-      "Spring/Fall USA is dedicated to empowering international students with the knowledge, resources, and support needed to successfully navigate the F-1 visa process and achieve their dreams of studying in the United States.",
+      "Empowering international students with confidence, clarity, and powerful resources to navigate the F-1 visa process.",
   },
   {
     title: "Our Story",
     description:
-      "Founded in 2019 by former international students who faced the challenges of the visa process firsthand, Spring/Fall USA has grown into a trusted community where prospective students can find guidance, share experiences, and gain confidence in their visa journey.",
+      "Built by international students in 2019, now a trusted community empowering thousands across the globe.",
   },
   {
     title: "Our Values",
@@ -22,96 +26,62 @@ const aboutContent = [
   },
 ];
 
-const Card = () => {
+const Cards = () => {
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    cardsRef.current.forEach((card, i) => {
+      if (!card) return;
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 60, rotateX: -5 },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
-    <StyledWrapper>
-      <div className="card-container">
+    <section className="py-24 px-6 bg-transparent text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-24">
         {aboutContent.map((item, index) => (
-          <div className="card" key={index}>
-            <div className="card__content">
-              <h3 className="card__title">{item.title}</h3>
+          <div
+            key={index}
+            ref={(el) => (cardsRef.current[index] = el)}
+            className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:shadow-[0_0_30px_#00bfff33] transition-all duration-500"
+          >
+            <div className="absolute -inset-1 bg-black opacity-10 rounded-2xl blur-2xl z-0"></div>
+            <div className="relative z-10">
+              <h3 className="text-xl font-semibold mb-4 bg-gradient-to-br from-blue-400 to-white text-transparent bg-clip-text">
+                {item.title}
+              </h3>
               {Array.isArray(item.description) ? (
-                <ul className="card__list">
+                <ul className="list-disc list-inside text-slate-300 space-y-1 text-sm">
                   {item.description.map((point, i) => (
-                    <li key={i} className="card__list-item">
-                      {point}
-                    </li>
+                    <li key={i}>{point}</li>
                   ))}
                 </ul>
               ) : (
-                <p className="card__text">{item.description}</p>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  {item.description}
+                </p>
               )}
             </div>
           </div>
         ))}
       </div>
-    </StyledWrapper>
+    </section>
   );
 };
 
-const StyledWrapper = styled.div`
-  .card-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-    flex-wrap: wrap;
-    // background-color: #05062d;
-  }
-
-  .card {
-    width: 340px;
-    height: auto;
-    border-radius: 20px;
-    padding: 4px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-    font-family: "Inter", sans-serif;
-  }
-
-  .card__content {
-    background: #05062d;
-    border-radius: 17px;
-    padding: 1.8rem;
-    height: 100%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .card__title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .card__text {
-    font-size: 0.95rem;
-    line-height: 1.9;
-    color: #d1d1d1;
-  }
-
-  .card__list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .card__list-item {
-    font-size: 1rem;
-    color: #ffffffcc;
-  }
-
-  @media (max-width: 1024px) {
-    .card-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-`;
-
-export default Card;
+export default Cards;
