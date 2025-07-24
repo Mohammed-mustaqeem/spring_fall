@@ -9,6 +9,7 @@ import jackImg from "@/assets/images/jack.png";
 import lissaImg from "@/assets/images/lissa.png";
 import yvetteImg from "@/assets/images/yvette.png";
 
+
 const PartnersSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredUniversity, setHoveredUniversity] = useState<number | null>(
@@ -136,7 +137,7 @@ const PartnersSection = () => {
                       relative z-10 rounded-full p-2 border-2 border-transparent
                       bg-gradient-to-br from-white to-blue-50 overflow-hidden 
                       shadow-lg transition-all duration-500
-                      ${hoveredUniversity === index ? "border-visa-blue" : ""}
+                      ${hoveredUniversity === index ? "border-visa-navy" : ""}
                     `}
                   >
                     <div
@@ -159,7 +160,7 @@ const PartnersSection = () => {
                   </div>
 
                   <div className="mt-4 text-center max-w-[220px]">
-                    <h4 className="font-medium text-visa-navy text-lg">
+                    <h4 className="font-medium text-white text-lg">
                       {university.name}
                     </h4>
                     <div
@@ -170,19 +171,19 @@ const PartnersSection = () => {
                             ? "opacity-100"
                             : "opacity-0"
                         }
-                        pointer-events-none
+                        
                       `}
                     >
-                      <p className="text-gray-600 text-sm mb-3">
+                      <p className="text-gray-300 text-sm mb-3">
                         {university.description}
                       </p>
                       <a
                         href={university.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-visa-blue hover:text-visa-navy text-sm font-medium transition-colors"
+                        className="inline-flex items-center gap-1 text-visa-blue hover:text-visa-navy text-sm font-medium "
                       >
-                        <span>Visit Website</span>
+                        <span className=" cursor-pointer">Visit Website</span>
                         <ExternalLink size={12} />
                       </a>
                     </div>
@@ -194,8 +195,8 @@ const PartnersSection = () => {
         </div>
 
         <div className="mb-16">
-          <h3 className="text-2xl font-medium text-visa-navy mb-10 text-center">
-            <span className="border-b-2 border-visa-blue pb-2">
+          <h3 className="text-2xl font-medium text-white mb-10 text-center">
+            <span className="border-b-2 border-white pb-2">
               Visa Officer Affiliates
             </span>
           </h3>
@@ -248,7 +249,7 @@ const PartnersSection = () => {
                       />
                     </div>
 
-                    <h4 className="font-semibold text-xl text-visa-navy mb-1 transition-all duration-300 group-hover:text-visa-blue">
+                    <h4 className="font-semibold text-xl text-white mb-1 transition-all duration-300 group-hover:text-visa-blue">
                       {officer.name}
                     </h4>
 
@@ -262,7 +263,7 @@ const PartnersSection = () => {
                       <ExternalLink size={12} />
                     </a>
 
-                    <p className="text-gray-600 mb-4 text-sm max-w-xs">
+                    <p className="text-gray-400 mb-4 text-sm max-w-xs">
                       {officer.description}
                     </p>
 
@@ -275,8 +276,8 @@ const PartnersSection = () => {
                         pointer-events-none
                       `}
                     >
-                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg inline-block">
-                        <span className="inline-block bg-white px-3 py-1.5 rounded-full text-visa-blue font-medium shadow-sm text-sm">
+                      <div className=" p-3 rounded-lg inline-block">
+                        <span className="inline-block bg-white px-3 py-1.5 rounded-full text-visa-blue font-medium shadow-sm text-xs">
                           {officer.promo}
                         </span>
                       </div>
@@ -293,19 +294,19 @@ const PartnersSection = () => {
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          <blockquote className="italic text-xl text-gray-700 max-w-3xl mx-auto relative">
-            <div className="text-5xl text-visa-blue/10 font-serif absolute -top-6 left-0">
+          <blockquote className="italic text-xl text-gray-400 max-w-3xl mx-auto relative">
+            <div className="text-5xl text-gray-400 font-serif absolute -top-6 left-0">
               "
             </div>
             <p className="relative z-10">
               Spring/Fall USA has been an invaluable resource for our
               international students seeking F-1 visas.
             </p>
-            <div className="text-5xl text-visa-blue/10 font-serif absolute -bottom-10 right-0">
+            <div className="text-5xl text-gray-400 font-serif absolute -bottom-10 right-0">
               "
             </div>
-            <div className="w-16 h-1 bg-visa-blue mx-auto my-6"></div>
-            <cite className="not-italic font-semibold text-visa-navy text-lg block">
+            <div className="w-16 h-1 bg-white mx-auto my-6"></div>
+            <cite className="not-italic font-semibold text-white text-lg block">
               — Dr. Sarah Johnson, International Student Advisor
             </cite>
           </blockquote>
