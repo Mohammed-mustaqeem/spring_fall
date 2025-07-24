@@ -41,19 +41,19 @@ const VisaInterviewSection = () => {
   return (
     <section
       id="visa-interview-section"
-      className="py-24 bg-gradient-to-br from-white to-blue-50"
+      className="py-24 bg-gradient-to-br from-blue-950 via-black to-blue-950"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-serif font-bold text-visa-navy leading-tight text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white text-center mb-12">
           What to Expect at Your{" "}
-          <span className="text-visa-blue">Visa Interview</span>
+          <span className="text-blue-700">Visa Interview</span>
         </h2>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-6 auto-rows-[minmax(200px,auto)] gap-5">
-          {/* Interview Points */}
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
+          {/* Evaluation Points */}
           <div
-            className={`col-span-3 p-6 bg-white rounded-xl shadow-md border border-blue-100 transition-all duration-700 ${
+            className={`lg:col-span-3 p-6 bg-white rounded-xl shadow-md border border-blue-100 transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
@@ -75,9 +75,9 @@ const VisaInterviewSection = () => {
             </ul>
           </div>
 
-          {/* Download Guide */}
+          {/* Interview Prep Guide */}
           <div
-            className={`col-span-3 bg-visa-blue text-white rounded-xl flex flex-col justify-between p-6 transition-all duration-700 ${
+            className={`lg:col-span-3 bg-visa-blue text-white rounded-xl flex flex-col justify-between p-6 transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
@@ -97,7 +97,7 @@ const VisaInterviewSection = () => {
 
           {/* Common Questions */}
           <div
-            className={`col-span-4 bg-white rounded-xl p-6 shadow-md border border-gray-100 transition-all duration-700 ${
+            className={`sm:col-span-2 lg:col-span-4 bg-white rounded-xl p-6 shadow-md border border-gray-100 transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
@@ -129,54 +129,52 @@ const VisaInterviewSection = () => {
             </div>
           </div>
 
-          {/* Pro Tip - FIXED BOX */}
+          {/* Ace Your Interview Box (bottom left on mobile) */}
           <div
-            className={`col-span-2 bg-yellow-50 border border-yellow-200 p-6 rounded-xl flex flex-col justify-between transition-all duration-700 ${
+            className={`sm:col-span-1 lg:col-span-2 bg-visa-navy text-white p-6 rounded-xl flex flex-col transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="flex items-start">
-              <div className="bg-yellow-100 p-2 rounded-full mr-4 flex items-center justify-center">
-                <svg
-                  className="text-yellow-700 w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-yellow-800">Pro Tip</h4>
-                <p className="text-yellow-700 mt-1 text-sm">
-                  Schedule a free mock interview with our team and get detailed
-                  feedback.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Summary CTA */}
-          <div
-            className={`col-span-6 bg-visa-navy text-white p-8 rounded-xl text-center transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-          >
-            <h3 className="text-2xl font-bold mb-2">
+            <h3 className="text-xl font-bold mb-3">
               Ace Your Interview with Confidence
             </h3>
-            <p className="text-sm text-blue-100 max-w-2xl mx-auto">
+            <p className="text-sm text-blue-100">
               Preparation is everything. Understand what’s expected, practice
               smart, and walk in with the confidence to succeed.
             </p>
+          </div>
+
+          {/* Pro Tip Box (full-width last row) */}
+          <div
+            className={`sm:col-span-2 lg:col-span-6 bg-yellow-50 border border-yellow-200 p-4 sm:p-6 rounded-xl flex items-start gap-4 transition-all duration-700 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
+            <div className="bg-yellow-100 p-2 rounded-full flex items-center justify-center">
+              <svg
+                className="text-yellow-700 w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-yellow-800">Pro Tip</h4>
+              <p className="text-yellow-700 mt-1 text-sm">
+                Schedule a free mock interview with our team and get detailed
+                feedback.
+              </p>
+            </div>
           </div>
         </div>
       </div>
