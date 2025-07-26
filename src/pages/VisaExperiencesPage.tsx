@@ -1,13 +1,24 @@
+// Enhanced Visa Experiences Page with Custom Dropdown and Consistent Theme - Fully Responsive
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  PlusCircle, Filter, Search, MapPin, Calendar, BookOpen, ExternalLink, ArrowRight, Loader2
+} from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PlusCircle, Filter, Search, MapPin, Calendar, BookOpen, ThumbsUp, ArrowRight, Loader2, ExternalLink } from 'lucide-react';
-import { toast } from 'sonner';
 import { VisaExperience } from '@/types/database';
 import { experiences as staticExperiences } from '../data/experiences';
+
+const filterOptions = [
+  { label: 'All Outcomes', value: 'all' },
+  { label: 'Approved', value: 'yes' },
+  { label: 'Denied', value: 'no' },
+  { label: 'Admin Processing', value: 'administrative' },
+];
 
 const VisaExperiencesPage = () => {
   const [experiences, setExperiences] = useState<VisaExperience[]>([]);
@@ -27,8 +38,6 @@ const VisaExperiencesPage = () => {
 
   const applyFilters = () => {
     let filtered = [...experiences];
-
-    // Apply search term
     if (searchTerm) {
       filtered = filtered.filter(
         (exp) =>
@@ -39,38 +48,27 @@ const VisaExperiencesPage = () => {
           exp.experience.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
-    // Apply filters
     if (filter !== 'all') {
       filtered = filtered.filter((exp) => exp.approved === filter);
     }
-
     setFilteredExperiences(filtered);
   };
 
   const getApprovalStatusColor = (status: string) => {
     switch (status) {
-      case 'yes':
-        return 'text-green-600 bg-green-50';
-      case 'no':
-        return 'text-red-600 bg-red-50';
-      case 'administrative':
-        return 'text-amber-600 bg-amber-50';
-      default:
-        return 'text-gray-600 bg-gray-50';
+      case 'yes': return 'text-green-400 bg-green-900/30';
+      case 'no': return 'text-red-400 bg-red-900/30';
+      case 'administrative': return 'text-yellow-400 bg-yellow-900/30';
+      default: return 'text-gray-400 bg-gray-700/30';
     }
   };
 
   const getApprovalStatusLabel = (status: string) => {
     switch (status) {
-      case 'yes':
-        return 'Approved';
-      case 'no':
-        return 'Denied';
-      case 'administrative':
-        return 'Administrative Processing';
-      default:
-        return 'Unknown';
+      case 'yes': return 'Approved';
+      case 'no': return 'Denied';
+      case 'administrative': return 'Admin Processing';
+      default: return 'Unknown';
     }
   };
 
@@ -80,129 +78,125 @@ const VisaExperiencesPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      
-      <main className="flex-grow pt-28">
-        <section className="py-16 bg-gradient-to-br from-visa-light via-white to-blue-50">
-          <div className="container-custom mx-auto">
-            <h1 className="text-4xl font-serif font-bold text-visa-navy mb-6">
-              Visa <span className="text-visa-blue">Experiences</span>
-            </h1>
-            <p className="text-lg text-gray-700 max-w-3xl">
-              Read real F-1 visa interview experiences shared by students who 
-              have successfully navigated the application process. Learn from their 
-              journeys and prepare for your own interview.
-            </p>
-          </div>
+      <main className="flex-grow pt-28 px-4 sm:px-6 lg:px-12">
+        <section className="py-16 bg-gradient-to-br from-black via-blue-950 to-black shadow-black shadow-inner text-center">
+          <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 tracking-tight bg-white text-transparent bg-clip-text">
+            Visa <span className="text-white">Experiences</span>
+          </h1>
+          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">
+            Real F-1 visa interview experiences from students across the world. Gain confidence and prepare better.
+          </p>
         </section>
-        
+
         <section className="py-16">
-          <div className="container-custom mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-              <div className="w-full md:w-auto flex flex-col md:flex-row gap-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+          <div className="max-w-7xl mx-auto px-2 sm:px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+              <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
+                <div className="relative w-full sm:w-64">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={18} />
                   <Input
                     placeholder="Search experiences..."
-                    className="pl-10 w-full md:w-64"
+                    className="pl-10 bg-white/5 text-white border-white/10 backdrop-blur-md"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                
                 <div className="flex items-center gap-2">
-                  <Filter size={18} className="text-gray-500" />
-                  <select
-                    className="border border-gray-200 rounded-md p-2 text-sm"
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                  >
-                    <option value="all">All Outcomes</option>
-                    <option value="yes">Approved</option>
-                    <option value="no">Denied</option>
-                    <option value="administrative">Administrative Processing</option>
-                  </select>
+                  <Filter size={18} className="text-white/40" />
+                  <div className="flex flex-wrap gap-2">
+                    {filterOptions.map(({ value, label }) => (
+                      <button
+                        key={value}
+                        className={`px-3 py-1 rounded-2xl text-sm transition-all duration-300 border border-white/10 backdrop-blur-md ${
+                          filter === value ? 'bg-blue-600 text-white' : 'bg-white/5 text-white/70 hover:bg-white/10'
+                        }`}
+                        onClick={() => setFilter(value)}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-              
               <Link to="/visa-experiences/share">
-                <Button className="bg-visa-blue hover:bg-visa-navy text-white">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-3xl w-full sm:w-auto">
                   <PlusCircle size={16} className="mr-2" />
                   Share Your Experience
                 </Button>
               </Link>
             </div>
-            
+
             {isLoading ? (
               <div className="flex justify-center items-center py-20">
-                <Loader2 className="animate-spin text-visa-blue mr-2" size={24} />
-                <span className="text-gray-600">Loading experiences...</span>
+                <Loader2 className="animate-spin text-blue-500 mr-2" size={24} />
+                <span className="text-white/70">Loading experiences...</span>
               </div>
             ) : filteredExperiences.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredExperiences.map((exp) => (
-                  <div key={exp.id} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all">
-                    <div className="p-6">
-                      <div className="flex items-center mb-4">
-                        <img 
-                          src={getRandomAvatar(exp.name)} 
-                          alt={exp.name} 
-                          className="w-16 h-16 rounded-full object-cover border-4 border-blue-100"
-                        />
-                        <div className="ml-4">
-                          <h3 className="font-semibold text-visa-navy text-lg">{exp.name}</h3>
-                          <p className="text-sm text-visa-blue">{exp.university}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="inline-flex items-center text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-full">
-                          <MapPin size={12} className="mr-1" /> 
-                          {exp.consulate}
-                        </span>
-                        <span className="inline-flex items-center text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-full">
-                          <Calendar size={12} className="mr-1" /> 
-                          {new Date(exp.interview_date).toLocaleDateString()}
-                        </span>
-                        <span className="inline-flex items-center text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-full">
-                          <BookOpen size={12} className="mr-1" /> 
-                          {exp.major}
-                        </span>
-                      </div>
-                      
-                      <p className="text-gray-600 line-clamp-3 mb-4 bg-blue-50 p-4 rounded-lg italic">"{exp.experience.substring(0, 150)}..."</p>
-                      
-                      <div className="flex justify-between items-center mt-4">
-                        <span className={`text-xs px-3 py-1 rounded-full font-medium ${getApprovalStatusColor(exp.approved)}`}>
-                          {getApprovalStatusLabel(exp.approved)}
-                        </span>
-                        
-                        <Link to={`/visa-experiences/${exp.id}`}>
-                          <Button variant="ghost" size="sm" className="text-visa-blue hover:text-visa-navy">
-                            Read Full Story <ExternalLink size={14} className="ml-1" />
-                          </Button>
-                        </Link>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredExperiences.map((exp, i) => (
+                  <motion.div
+                    key={exp.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 hover:shadow-[0_0_40px_#00bfff33] transition-all"
+                  >
+                    <div className="flex items-center mb-4">
+                      <img
+                        src={getRandomAvatar(exp.name)}
+                        alt={exp.name}
+                        className="w-14 h-14 rounded-full border-4 border-blue-500/30 object-cover"
+                      />
+                      <div className="ml-4">
+                        <h3 className="font-bold text-white text-sm sm:text-base">{exp.name}</h3>
+                        <p className="text-xs sm:text-sm text-blue-400">{exp.university}</p>
                       </div>
                     </div>
-                  </div>
+
+                    <div className="flex flex-wrap gap-2 mb-4 text-xs">
+                      <span className="flex items-center gap-1 px-2 py-1 bg-white/10 rounded-full text-white/70">
+                        <MapPin size={12} /> {exp.consulate}
+                      </span>
+                      <span className="flex items-center gap-1 px-2 py-1 bg-white/10 rounded-full text-white/70">
+                        <Calendar size={12} /> {new Date(exp.interview_date).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center gap-1 px-2 py-1 bg-white/10 rounded-full text-white/70">
+                        <BookOpen size={12} /> {exp.major}
+                      </span>
+                    </div>
+
+                    <p className="text-white/70 text-sm italic mb-4 line-clamp-3">
+                      “{exp.experience.slice(0, 140)}...”
+                    </p>
+
+                    <div className="flex justify-between items-center">
+                      <span className={`text-xs font-medium px-3 py-1 rounded-full ${getApprovalStatusColor(exp.approved)}`}>
+                        {getApprovalStatusLabel(exp.approved)}
+                      </span>
+                      <Link to={`/visa-experiences/${exp.id}`}>
+                        <Button variant="ghost" size="sm" className="text-blue-400 hover:text-white">
+                          Read Full <ExternalLink size={14} className="ml-1" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 bg-blue-50 rounded-lg shadow-inner">
-                <div className="mb-4 text-visa-blue">
-                  <Search size={48} className="mx-auto" />
-                </div>
-                <h3 className="text-xl font-medium text-visa-navy mb-2">No experiences found</h3>
-                <p className="text-gray-600 mb-6">
+              <div className="text-center py-16 bg-white/5 rounded-xl border border-white/10 backdrop-blur">
+                <Search size={36} className="mx-auto text-blue-400 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">No experiences found</h3>
+                <p className="text-white/60 mb-6">
                   {searchTerm || filter !== 'all'
-                    ? "Try adjusting your search or filters"
-                    : "Be the first to share your visa interview experience"}
+                    ? 'Try adjusting your search or filters'
+                    : 'Be the first to share your visa interview experience'}
                 </p>
                 <Link to="/visa-experiences/share">
-                  <Button className="bg-visa-blue hover:bg-visa-navy text-white">
-                    Share Your Experience
-                    <ArrowRight size={16} className="ml-2" />
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                    Share Your Experience <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </Link>
               </div>
@@ -210,7 +204,6 @@ const VisaExperiencesPage = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

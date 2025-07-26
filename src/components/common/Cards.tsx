@@ -34,11 +34,11 @@ const Cards = () => {
       if (!card) return;
       gsap.fromTo(
         card,
-        { opacity: 0, y: 60, rotateX: -5 },
+        { opacity: 0, y: 60, scale: 0.95 },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
+          scale: 1,
           duration: 1.2,
           ease: "power4.out",
           scrollTrigger: {
@@ -52,21 +52,21 @@ const Cards = () => {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-transparent text-white">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-24">
+    <section className="relative z-10 py-24 px-4 md:px-12 bg-gradient-to-t from-black/90 via-black black">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {aboutContent.map((item, index) => (
           <div
             key={index}
             ref={(el) => (cardsRef.current[index] = el)}
-            className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:shadow-[0_0_30px_#00bfff33] transition-all duration-500"
+            className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 overflow-hidden hover:shadow-[0_0_30px_#00bfff33] transition-all duration-500"
           >
-            <div className="absolute -inset-1 bg-black opacity-10 rounded-2xl blur-2xl z-0"></div>
+            <div className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-blue-400/10 via-purple-400/10 to-pink-400/10 blur-2xl opacity-10 group-hover:opacity-20 transition duration-500 pointer-events-none" />
             <div className="relative z-10">
-              <h3 className="text-xl font-semibold mb-4 bg-gradient-to-br from-blue-400 to-white text-transparent bg-clip-text">
+              <h3 className="text-xl font-bold mb-4 bg-gradient-to-br from-blue-400 to-white text-transparent bg-clip-text">
                 {item.title}
               </h3>
               {Array.isArray(item.description) ? (
-                <ul className="list-disc list-inside text-slate-300 space-y-1 text-sm">
+                <ul className="list-disc list-inside text-slate-300 text-sm space-y-1">
                   {item.description.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
