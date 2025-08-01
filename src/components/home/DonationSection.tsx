@@ -1,68 +1,95 @@
-
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useRef } from 'react';
 import { Gift, Heart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DonationSection = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.donate-animate', {
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 85%',
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const paypalDonationUrl = 'https://www.paypal.com/donate/?hosted_button_id=5VXV68NC6TC9U';
-  
+
   return (
-    <section className="py-16 bg-gradient-to-br from-visa-light to-white">
-      <div className="container-custom mx-auto">
-        <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="bg-visa-blue p-8 md:p-12 text-white">
-              <h2 className="text-3xl font-serif font-bold mb-4">
-                Support Our Students
-              </h2>
-              <p className="mb-6">
-                Your donation helps us assist more students with their F-1 visa journey, conduct free webinars, and expand our educational resources.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="bg-white/20 rounded-full p-2 mr-4 mt-1">
-                    <Gift size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Help Students in Need</h3>
-                    <p className="text-blue-100">Support students who need financial assistance for visa applications</p>
-                  </div>
+    <section
+      ref={sectionRef}
+      className="py-28 px-4 bg-gradient-to-br from-[#050505] via-[#020B17] to-[#000000] text-white overflow-hidden"
+    >
+      <div className="container-custom mx-auto max-w-6xl">
+        <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-12 md:p-20 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10">
+          
+          {/* Left Section */}
+          <div className="donate-animate">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 leading-snug tracking-tight">
+              Empower the <span className="text-blue-500">Dreams</span><br />
+              of Future Scholars
+            </h2>
+            <p className="text-white/60 text-lg mb-10 max-w-md">
+              Your support fuels free webinars, visa coaching, and educational access for international students.
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <div className="p-3 bg-white/10 rounded-xl mr-4">
+                  <Gift size={22} className="text-blue-400" />
                 </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-white/20 rounded-full p-2 mr-4 mt-1">
-                    <Heart size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Fund Educational Programs</h3>
-                    <p className="text-blue-100">Enable us to organize more webinars and create free resources</p>
-                  </div>
+                <div>
+                  <h4 className="text-white font-medium text-lg">Sponsor Hope</h4>
+                  <p className="text-white/50 text-sm">Aid students who can't afford visa application fees.</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <div className="p-3 bg-white/10 rounded-xl mr-4">
+                  <Heart size={22} className="text-red-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium text-lg">Build Education</h4>
+                  <p className="text-white/50 text-sm">Fund webinars and global visa awareness programs.</p>
                 </div>
               </div>
             </div>
-            
-            <div className="p-8 md:p-12">
-              <h3 className="text-2xl font-serif font-bold text-visa-navy mb-4">
-                Make a Difference Today
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Your contribution, no matter how small, makes a significant impact on our community's ability to help international students achieve their educational dreams in the United States.
+          </div>
+
+          {/* Right Section */}
+          <div className="donate-animate bg-white/5 p-8 md:p-10 rounded-2xl border border-white/10 shadow-inner">
+            <h3 className="text-2xl md:text-3xl font-semibold font-serif mb-4 text-blue-300">
+              Your Help Goes Further
+            </h3>
+            <p className="text-white/60 text-base mb-6">
+              Spring/Fall USA is driven by passionate volunteers. Every donation contributes directly to helping students achieve their dreams.
+            </p>
+
+            <div className="bg-white/5 p-5 rounded-xl border border-blue-500/20 mb-8">
+              <p className="text-white font-medium mb-2 text-lg">Why Donate?</p>
+              <p className="text-white/60 text-sm leading-relaxed">
+                We're not just an organization — we're a movement. Your generosity helps amplify resources for thousands of students worldwide.
               </p>
-              
-              <div className="mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <p className="text-visa-blue font-medium mb-2">Why donate?</p>
-                <p className="text-gray-600">
-                  Spring/Fall USA is run by volunteers who dedicate their time to help students navigate the complex visa process. Your donations go directly toward helping students and improving our resources.
-                </p>
-              </div>
-              
-              <a href={paypalDonationUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="w-full bg-visa-gold hover:bg-visa-gold/90 text-visa-navy">
-                  Donate via PayPal
-                </Button>
-              </a>
             </div>
+
+            <a href={paypalDonationUrl} target="_blank" rel="noopener noreferrer">
+              <Button className="w-full bg-white  text-black font-semibold text-sm py-3 rounded-3xl shadow-md hover:bg-white/80 transition-transform">
+                Donate via PayPal
+              </Button>
+            </a>
           </div>
         </div>
       </div>

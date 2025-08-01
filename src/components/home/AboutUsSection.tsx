@@ -93,10 +93,10 @@ const AboutUsSection = () => {
   return (
     <section
       id="about-section"
-      className="py-10 relative overflow-hidden  bg-gradient-to-b from-blue-700 via-black to-blue-700"
+      className="py-10 relative overflow-hidden bg-white"
     >
       <div>
-        <div className="text-white px-4 sm:px-6 md:px-10 py-10 sm:py-14">
+        <div className="text-black px-4 sm:px-6 md:px-10 py-10 sm:py-14">
           <div className="max-w-7xl mx-auto flex flex-col space-y-8 items-center">
             {/* Row 1: pill image + “Unique Ideas” */}
             <div className="flex flex-col lg:flex-row items-center lg:space-x-6 space-y-6 lg:space-y-0 text-center lg:text-left">
@@ -123,7 +123,7 @@ const AboutUsSection = () => {
                 <span className="font-light">USA</span>
               </h2>
 
-              <button className="bg-white text-black px-8 sm:px-10 py-3 sm:py-4 rounded-full flex items-center justify-center space-x-3 hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all">
+              <button className="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full flex items-center justify-center space-x-3 hover:bg-[#000]/70 hover:shadow-md hover:shadow-white/50 transition-all">
                 <span className="text-xs sm:text-sm font-medium tracking-widest">
                   WHAT WE DO
                 </span>
@@ -150,8 +150,8 @@ const AboutUsSection = () => {
         </div>
 
         {/* Description Text */}
-        <div className="text-center py-6  text-white">
-          <p className="max-w-3xl mx-auto">
+        <div className="text-center py-6  text-white mx-20">
+          <p className="">
             Empowering international students with knowledge, resources, and
             support to navigate the F-1 visa process and achieve their dreams of
             studying in the United States.

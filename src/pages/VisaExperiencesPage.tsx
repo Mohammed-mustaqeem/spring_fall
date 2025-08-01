@@ -104,7 +104,7 @@ const VisaExperiencesPage = () => {
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  <Filter size={18} className="text-white/40" />
+                  <Filter size={18} className="text-white/40" /> 
                   <div className="flex flex-wrap gap-2">
                     {filterOptions.map(({ value, label }) => (
                       <button

@@ -52,8 +52,8 @@ const Cards = () => {
   }, []);
 
   return (
-    <section className="relative z-10 py-24 px-4 md:px-12 bg-gradient-to-t from-black/90 via-black black">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section className="relative z-10 py-14 px-4 md:px-12 bg-gradient-to-t from-black/90 via-black black">
+      <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {aboutContent.map((item, index) => (
           <div
             key={index}
@@ -62,7 +62,7 @@ const Cards = () => {
           >
             <div className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-blue-400/10 via-purple-400/10 to-pink-400/10 blur-2xl opacity-10 group-hover:opacity-20 transition duration-500 pointer-events-none" />
             <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-br from-blue-400 to-white text-transparent bg-clip-text">
+              <h3 className="text-xl font-bold mb-4 text-white text-transparent bg-clip-text">
                 {item.title}
               </h3>
               {Array.isArray(item.description) ? (
