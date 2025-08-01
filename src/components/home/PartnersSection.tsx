@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Users, ExternalLink } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Import partner images
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// Partner images
 import arkansasImg from "@/assets/images/arkansas.png";
 import roanokeImg from "@/assets/images/roanoke.png";
 import ukentucyImg from "@/assets/images/ukentucy.png";
@@ -9,34 +14,27 @@ import jackImg from "@/assets/images/jack.png";
 import lissaImg from "@/assets/images/lissa.png";
 import yvetteImg from "@/assets/images/yvette.png";
 
-
 const PartnersSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredUniversity, setHoveredUniversity] = useState<number | null>(
-    null
-  );
+  const [hoveredUniversity, setHoveredUniversity] = useState<number | null>(null);
   const [hoveredOfficer, setHoveredOfficer] = useState<number | null>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    const ctx = gsap.context(() => {
+      gsap.from(".animate-reveal", {
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      });
+    }, sectionRef);
 
-    const section = document.getElementById("affiliates-section");
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
+    return () => ctx.revert();
   }, []);
 
   const universities = [
@@ -44,8 +42,7 @@ const PartnersSection = () => {
       name: "Arkansas State University",
       logo: arkansasImg,
       website: "https://www.astate.edu/",
-      description:
-        "A vibrant campus community with comprehensive academic programs",
+      description: "A vibrant campus community with comprehensive academic programs",
     },
     {
       name: "University of Kentucky",
@@ -57,8 +54,7 @@ const PartnersSection = () => {
       name: "Roanoke College",
       logo: roanokeImg,
       website: "https://www.roanoke.edu/",
-      description:
-        "A private liberal arts college in the beautiful Roanoke Valley",
+      description: "A private liberal arts college in the beautiful Roanoke Valley",
     },
   ];
 
@@ -89,229 +85,92 @@ const PartnersSection = () => {
   return (
     <section
       id="affiliates-section"
-      className="py-20 bg-gradient-to-b from-blue-700 via-black to-blue-950"
+      ref={sectionRef}
+      className="py-24 px-4 bg-[#0D0D0D] bg-gradient-to-b from-black via-[#0D0D0D] to-[#000511]"
     >
-      <div className="container-custom mx-auto">
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="flex items-center justify-center gap-3  mb-4">
-            <Users size={28} className="text-white" />
-            <h2 className="text-4xl font-serif font-bold text-white inline-block">
-              Our <span className="text-white/90">Affiliates</span>
-            </h2>
+     {/* University Affiliates Section */}
+<div className="animate-reveal mb-20">
+  <h3 className="text-2xl font-semibold text-white text-center mb-10">
+    <span className="border-b-2 border-blue-500 pb-2">University Affiliates</span>
+  </h3>
+
+  <div className="flex flex-wrap justify-center gap-10">
+    {universities.map((uni, index) => (
+      <div
+        key={index}
+        className="bg-white/5 backdrop-blur-lg rounded-xl p-6 w-[280px] hover:scale-105 transition-transform duration-500 group"
+        onMouseEnter={() => setHoveredUniversity(index)}
+        onMouseLeave={() => setHoveredUniversity(null)}
+      >
+        <div className="flex flex-col items-center text-center">
+          <div className="h-24 w-24 mb-4 rounded-full overflow-hidden border-2 border-blue-600">
+            <img src={uni.logo} alt={uni.name} className="object-contain w-full h-full" />
           </div>
-          <div className="w-24 h-1 bg-white mx-auto mb-6"></div>
-          <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">
-            Our trusted partnerships ensure you receive expert guidance and
-            support throughout your visa journey.
-          </p>
-        </div>
-
-        <div className="mb-20">
-          <h3 className="text-2xl font-medium text-white mb-10 text-center">
-            <span className="border-b-2 border-white pb-2">
-              University Affiliates
-            </span>
-          </h3>
-
-          <div className="flex justify-center gap-12 flex-wrap">
-            {universities.map((university, index) => (
-              <div
-                key={university.name}
-                className={`transition-all duration-700 delay-${
-                  index * 150
-                } transform ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
-                onMouseEnter={() => setHoveredUniversity(index)}
-                onMouseLeave={() => setHoveredUniversity(null)}
-              >
-                <div className="group relative flex flex-col items-center min-h-[320px]">
-                  <div
-                    className={`
-                      relative z-10 rounded-full p-2 border-2 border-transparent
-                      bg-gradient-to-br from-white to-blue-50 overflow-hidden 
-                      shadow-lg transition-all duration-500
-                      ${hoveredUniversity === index ? "border-visa-navy" : ""}
-                    `}
-                  >
-                    <div
-                      className={`
-                        bg-white rounded-full p-4 flex items-center justify-center 
-                        h-32 w-32 overflow-hidden transition-transform duration-300 
-                        transform ${
-                          hoveredUniversity === index
-                            ? "scale-110"
-                            : "scale-100"
-                        }
-                      `}
-                    >
-                      <img
-                        src={university.logo}
-                        alt={`${university.name} logo`}
-                        className="object-contain max-h-20 max-w-20"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mt-4 text-center max-w-[220px]">
-                    <h4 className="font-medium text-white text-lg">
-                      {university.name}
-                    </h4>
-                    <div
-                      className={`
-                        h-24 mt-2 transition-opacity duration-500 ease-in-out 
-                        ${
-                          hoveredUniversity === index
-                            ? "opacity-100"
-                            : "opacity-0"
-                        }
-                        
-                      `}
-                    >
-                      <p className="text-gray-300 text-sm mb-3">
-                        {university.description}
-                      </p>
-                      <a
-                        href={university.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-visa-blue hover:text-visa-navy text-sm font-medium "
-                      >
-                        <span className=" cursor-pointer">Visit Website</span>
-                        <ExternalLink size={12} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h3 className="text-2xl font-medium text-white mb-10 text-center">
-            <span className="border-b-2 border-white pb-2">
-              Visa Officer Affiliates
-            </span>
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-10">
-            {visaOfficers.map((officer, index) => (
-              <div
-                key={officer.name}
-                className={`
-                  transition-all duration-1000 delay-${100 * (index + 1)}
-                  ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
-                `}
-                onMouseEnter={() => setHoveredOfficer(index)}
-                onMouseLeave={() => setHoveredOfficer(null)}
-              >
-                <div className="relative group min-h-[320px]">
-                  <div
-                    className={`
-                      absolute inset-0 bg-gradient-to-br from-visa-blue/5 to-visa-navy/10 
-                      rounded-lg -z-10 transition-transform duration-500 
-                      ${
-                        hoveredOfficer === index
-                          ? "scale-105 opacity-100"
-                          : "opacity-0 scale-100"
-                      }
-                    `}
-                  ></div>
-
-                  <div className="flex flex-col items-center text-center">
-                    <div className="relative mb-5">
-                      <div
-                        className={`
-                          absolute inset-0 rounded-full 
-                          bg-gradient-to-r from-visa-blue to-visa-gold 
-                          animate-spin-slow opacity-0 group-hover:opacity-100
-                          transition-opacity duration-300
-                        `}
-                      ></div>
-
-                      <div className="absolute inset-0.5 bg-white rounded-full"></div>
-
-                      <img
-                        src={officer.logo}
-                        alt={`${officer.name} photo`}
-                        className="h-28 w-28 rounded-full object-cover relative z-10 border-2 border-white transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-
-                    <h4 className="font-semibold text-xl text-white mb-1 transition-all duration-300 group-hover:text-visa-blue">
-                      {officer.name}
-                    </h4>
-
-                    <a
-                      href={`https://${officer.website}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-visa-blue flex items-center gap-1 mb-3 text-sm hover:underline"
-                    >
-                      {officer.website}
-                      <ExternalLink size={12} />
-                    </a>
-
-                    <p className="text-gray-400 mb-4 text-sm max-w-xs">
-                      {officer.description}
-                    </p>
-
-                    <div
-                      className={`
-                        h-16 transition-opacity duration-500 ease-in-out 
-                        ${
-                          hoveredOfficer === index ? "opacity-100" : "opacity-0"
-                        }
-                        pointer-events-none
-                      `}
-                    >
-                      <div className=" p-3 rounded-lg inline-block">
-                        <span className="inline-block bg-white px-3 py-1.5 rounded-full text-visa-blue font-medium shadow-sm text-xs">
-                          {officer.promo}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div
-          className={`my-16 text-center transition-all duration-1000 delay-700 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <blockquote className="italic text-xl text-gray-400 max-w-3xl mx-auto relative">
-            <div className="text-5xl text-gray-400 font-serif absolute -top-6 left-0">
-              "
-            </div>
-            <p className="relative z-10">
-              Spring/Fall USA has been an invaluable resource for our
-              international students seeking F-1 visas.
-            </p>
-            <div className="text-5xl text-gray-400 font-serif absolute -bottom-10 right-0">
-              "
-            </div>
-            <div className="w-16 h-1 bg-white mx-auto my-6"></div>
-            <cite className="not-italic font-semibold text-white text-lg block">
-              — Dr. Sarah Johnson, International Student Advisor
-            </cite>
-          </blockquote>
+          <h4 className="text-white text-lg font-medium mb-2">{uni.name}</h4>
+          <p className="text-sm text-white/60 mb-3 min-h-[48px]">{uni.description}</p>
+          <a
+            href={uni.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-500 text-sm flex items-center gap-1"
+          >
+            Visit Website <ExternalLink size={12} />
+          </a>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
+{/* Visa Officer Affiliates Section */}
+<div className="animate-reveal mb-10">
+  <h3 className="text-2xl font-semibold text-white text-center mb-10">
+    <span className="border-b-2 border-blue-500 pb-2">Visa Officer Affiliates</span>
+  </h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+    {visaOfficers.map((officer, index) => (
+      <div
+        key={index}
+        className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-transform duration-500 group text-center"
+        onMouseEnter={() => setHoveredOfficer(index)}
+        onMouseLeave={() => setHoveredOfficer(null)}
+      >
+        <div className="flex flex-col items-center">
+          <div className="relative mb-4">
+            <img
+              src={officer.logo}
+              alt={officer.name}
+              className="h-24 w-24 rounded-full object-cover border-2 border-blue-500"
+            />
+          </div>
+          <h4 className="text-white text-lg font-semibold mb-1 group-hover:text-blue-400 transition-colors duration-300">
+            {officer.name}
+          </h4>
+          <a
+            href={`https://${officer.website}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 text-sm hover:underline mb-2"
+          >
+            {officer.website}
+          </a>
+          <p className="text-sm text-white/60 min-h-[48px]">{officer.description}</p>
+          <div
+            className={`mt-3 transition-opacity duration-300 ${
+              hoveredOfficer === index ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <span className="bg-white text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+              {officer.promo}
+            </span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
     </section>
   );
 };
