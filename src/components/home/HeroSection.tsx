@@ -1,174 +1,180 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowDown, Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-
-const SEO = {
-  title: "Spring/Fall USA - Free F1 Visa Guide & Preparation Resources",
-  description:
-    "Get free guidance and resources to help international students navigate the F-1 visa process successfully. Expert tips for F1 visa preparation.",
-  keywords:
-    "F1 visa, Free F1 visa guide, F1 visa preparation, US student visa, study in USA, F1 visa interview, F1 visa process",
-};
 
 const HeroSection = () => {
   const [count, setCount] = useState(0);
   const finalCount = 10000;
   const navigate = useNavigate();
 
-  const titleRef = useRef(null);
-  const paraRef = useRef(null);
-  const buttonsRef = useRef(null);
-  const stat1Ref = useRef(null);
-  const stat2Ref = useRef(null);
-  const testimonialRef = useRef(null);
-useEffect(() => {
-  // SEO Meta Tags setup remains unchanged...
+  // Refs
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const paraRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
-  // Counter Animation
-  const duration = 2000;
-  const interval = 20;
-  const step = finalCount / (duration / interval);
-  let current = 0;
-  const timer = setInterval(() => {
-    current += step;
-    setCount(Math.min(Math.floor(current), finalCount));
-    if (current >= finalCount) clearInterval(timer);
-  }, interval);
+  useEffect(() => {
+    // === Counter Animation ===
+    const duration = 2000;
+    const interval = 20;
+    const step = finalCount / (duration / interval);
+    let current = 0;
 
-  // === GSAP TIMELINE ===
-  const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.5 } });
+    const timer = setInterval(() => {
+      current += step;
+      const newValue = Math.min(Math.floor(current), finalCount);
+      setCount(newValue);
 
-  const chars = titleRef.current.querySelectorAll(".char");
-  tl.fromTo(
-    chars,
-    { y: 80, opacity: 0, rotateX: 90 },
-    {
-      y: 0,
-      opacity: 1,
-      rotateX: 0,
-      duration: 1,
-      stagger: 0.06,
-      ease: "power4.out",
-    }
-  )
-    .fromTo(paraRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.6")
-    .fromTo(buttonsRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.5")
-    .addLabel("contentBlocks", "-=0.4")
-    .fromTo(
-      [stat1Ref.current, stat2Ref.current],
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.1 },
-      "contentBlocks"
-    )
-    .fromTo(
-      testimonialRef.current,
-      { y: 40, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1 },
-      "contentBlocks"
-    );
+      if (current >= finalCount) clearInterval(timer);
+    }, interval);
 
-  return () => clearInterval(timer);
-}, []);
+    // === GSAP Animation Timeline ===
+    const ctx = gsap.context(() => {
+      const chars = titleRef.current?.querySelectorAll(".char") || [];
 
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const splitText = (text) =>
+      tl.fromTo(
+        chars,
+        { y: 80, opacity: 0, rotateX: 90 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          duration: 1.2,
+          stagger: 0.05,
+          ease: "power4.out",
+        }
+      )
+        .fromTo(
+          paraRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          "-=0.6"
+        )
+        .fromTo(
+          buttonsRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          "-=0.5"
+        )
+        .fromTo(
+          statsRef.current,
+          { y: 40, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.2)" },
+          "-=0.4"
+        );
+    }, titleRef);
+
+    return () => {
+      ctx.revert();
+      clearInterval(timer);
+    };
+  }, [navigate]);
+
+  // Split text for animated title
+  const splitText = (text: string) =>
     text.split("").map((char, idx) => (
       <span
         key={idx}
-        className="inline-block char text-[40px] md:text-5xl lg:text-[110px] font-serif text-white tracking-widest lg:tracking-[28px] font-extrabold"
+        className="inline-block char text-[40px] md:text-5xl lg:text-[110px] font-serif text-white tracking-widest lg:tracking-[28px] font-extrabold leading-none"
       >
         {char === " " ? "\u00A0" : char}
       </span>
     ));
 
   return (
-    <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-blue-950 via-black to-blue-700 overflow-hidden shadow-inner">
-      <div className="container-custom mx-auto px-4">
+    <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-blue-950 via-black to-blue-700 overflow-hidden relative min-h-screen flex items-center">
+      {/* Subtle animated grid */}
+      <div
+        className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(100, 180, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(100, 180, 255, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
+
+      {/* Floating orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-40 right-10 w-80 h-80 bg-blue-400/8 rounded-full blur-3xl" />
+
+      <div className="container-custom mx-auto px-4 relative z-10">
         <div className="text-center flex flex-col items-center">
+          {/* Animated Title */}
           <h1 ref={titleRef} className="flex flex-wrap justify-center pt-16">
             {splitText("SPRINGFALL")}
           </h1>
 
-          <p
-            ref={paraRef}
-            className="mt-6 text-sm text-white font-semibold max-w-lg tracking-tighter"
-          >
-            We provide free guidance and resources to help international
-            students navigate the F-1 visa process successfully.
+          {/* Tagline */}
+          <p ref={paraRef} className="mt-6 text-sm text-white/90 font-semibold max-w-lg tracking-tight">
+            We provide free guidance and resources to help international students navigate the F-1 visa process successfully.
           </p>
 
-          <div
-            ref={buttonsRef}
-            className="mt-8 flex flex-wrap gap-4 justify-center"
-          >
-            <Button
-              size="lg"
-              variant="secondary"
+          {/* Buttons */}
+          <div ref={buttonsRef} className="mt-8 flex flex-wrap gap-5 justify-center">
+            <button
               onClick={() => navigate("/f1-visa-info")}
-              className="bg-white hover:bg-white hover:shadow-sm hover:shadow-white transition-all text-black px-6 font-semibold rounded-3xl cursor-pointer"
+              className="group relative px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-400/30 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
             >
-              Get Started <ArrowDown size={18} className="ml-0" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white bg-transparent hover:text-white hover:shadow-sm hover:shadow-white hover:bg-transparent text-white font-semibold rounded-3xl"
+              <span className="relative z-10 flex items-center gap-2">
+                Get Started <ArrowDown size={18} />
+              </span>
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-400 to-blue-600 -z-0 blur-md opacity-0 group-hover:opacity-75 transition-opacity" />
+              <div className="absolute inset-0 -z-0 bg-gradient-to-r from-transparent via-white/40 to-transparent scale-x-0 group-hover:scale-x-150 group-hover:animate-shine rounded-3xl transition-transform duration-700" />
+            </button>
+
+            <button
               onClick={() => navigate("/community")}
+              className="group relative px-8 py-4 text-white font-semibold rounded-full border-2 border-white/30 bg-transparent transition-all duration-500 hover:border-blue-400 hover:bg-blue-900/30 hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
             >
-              <Send size={18} className="mr-1" /> Get free Guidance
-            </Button>
+              <span className="flex items-center gap-2">
+                <Send size={18} /> Get Free Guidance
+              </span>
+              <div className="absolute inset-0 rounded-3xl border border-blue-400/50 opacity-0 group-hover:opacity-100 group-hover:animate-pulse -z-0" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 to-transparent -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
           </div>
         </div>
 
-        <div className="w-full flex flex-col md:flex-row items-center md:items-end justify-between lg:px-28 mt-12 gap-8 md:gap-0">
-          <div className="flex flex-col gap-4 md:gap-2">
-            <div ref={stat1Ref} className="relative group w-full md:w-60">
-              <div className="absolute inset-0 bg-black/50 rounded-2xl w-full"></div>
-              <div className="relative p-4">
-                <div className="flex items-baseline space-x-1">
-                  <span className="font-sans text-2xl font-extrabold text-blue-600">100K</span>
-                  <span className="font-sans text-1xl font-bold text-blue-600">+</span>
-                </div>
-                <p className="mt-0 text-gray-600 text-xs font-medium">
-                  Students helped with their F-1 visas
-                </p>
+        {/* Unified Stats & Testimonial Card */}
+        <div
+          ref={statsRef}
+          className="mt-16 mx-auto max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl transition-all duration-700 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,120,255,0.2)] will-change-transform"
+        >
+          {/* Inner glow overlay */}
+          <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 bg-gradient-to-br from-blue-400/20 to-transparent blur-xl -z-10 transition-opacity duration-500" />
+
+          <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+            {/* Stats */}
+            <div className="flex-1 space-y-5">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-blue-300">100K+</span>
+                <span className="text-sm text-blue-200 font-medium">Students helped</span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-yellow-300">95%</span>
+                <span className="text-sm text-yellow-200 font-medium">Success rate</span>
               </div>
             </div>
 
-            <div ref={stat2Ref} className="relative group w-full md:w-60">
-              <div className="absolute inset-0 bg-transparent rounded-2xl group-hover:scale-105 w-full"></div>
-              <div className="relative p-4 border rounded-2xl">
-                <div className="flex items-baseline space-x-1">
-                  <span className="font-sans text-2xl font-extrabold text-yellow-400">95</span>
-                  <span className="font-sans text-1xl font-bold text-yellow-400 ml-1">%</span>
-                </div>
-                <p className="mt-0 text-yellow-400 text-xs font-medium">
-                  Satisfied and happy students
-                </p>
-              </div>
-            </div>
-          </div>
+            {/* Divider */}
+            <div className="hidden md:block w-px h-16 bg-white/20" />
 
-          <div
-            ref={testimonialRef}
-            className="transition-all flex lg:flex-col items-center justify-center gap-2 duration-700 bg-white p-2 rounded-xl"
-          >
-            <div className="w-28 bg-white lg:w-56 h-20 lg:14">
+            {/* Testimonial */}
+            <div className="flex-1">
               <img
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-                alt="International students celebrating with diplomas after successful F1 visa applications"
-                className="rounded-xl object-cover object-bottom w-full h-full"
+                alt="Happy student"
+                className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg mx-auto md:mx-0"
               />
-            </div>
-            <div className="w-48 sm:w-60 bg-white p-2 sm:p-2 rounded-lg lg:text-center">
-              <p className="text-visa-navy text-[11px] lg:text-xs font-bold font-sans">
+              <p className="text-white text-sm mt-3 leading-relaxed font-medium">
                 "Spring/Fall USA helped me achieve my dream of studying in the US!"
               </p>
-              <p className="text-[10px] lg:text-xs mt-1 text-visa-navy font-sans">
-                – Maria, Computer Science Student
-              </p>
+              <p className="text-blue-200 text-xs mt-1">– Maria, Computer Science Student</p>
             </div>
           </div>
         </div>
@@ -178,3 +184,6 @@ useEffect(() => {
 };
 
 export default HeroSection;
+
+
+

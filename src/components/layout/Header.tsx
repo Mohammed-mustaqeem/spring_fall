@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, Send, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "../../../src/assets/images/springfall.png";
+import gsap from "gsap";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
   const paypalDonationUrl =
     "https://www.paypal.com/donate/?hosted_button_id=5VXV68NC6TC9U";
 
@@ -30,18 +32,35 @@ const Header = () => {
     window.open(paypalDonationUrl, "_blank", "noopener,noreferrer");
   };
 
+  // GSAP Animation: Slide down & fade in
+  useEffect(() => {
+    if (!headerRef.current) return;
+
+    gsap.set(headerRef.current, { y: -60, opacity: 0 });
+
+    gsap.to(headerRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      delay: .7,
+      ease: "power3.in",
+      clearProps: "transform", // Prevents transform from lingering
+    });
+  }, []);
+
   return (
     <>
+      {/* Animated Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 mt-5
-           bg-[#05051a]/70 backdrop-blur-sm px-6 md:mx-28  md:m-8 p-3 flex justify-between items-center rounded-full shadow-lg  transition-all duration-300 text-white/60`}
+        ref={headerRef}
+        className="fixed top-0 left-0 right-0 z-50 mt-5 bg-[#05051a]/80 backdrop-blur-sm px-6 md:mx-24 md:my-8 p-3 flex justify-between items-center rounded-full shadow-lg text-white transition-all duration-300"
       >
         <div className="flex items-center space-x-4">
-          <img src={Logo} alt="Logo" className="h-8 w-auto" />
+          <img src={Logo} alt="Spring/Fall USA Logo" className="h-8 w-auto" />
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        <nav className="hidden lg:flex items-center space-x-8">
           {navItems.map((item) =>
             item.path.startsWith("http") ? (
               <a
@@ -49,7 +68,7 @@ const Header = () => {
                 href={item.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative tracking-wide text-xs hover:text-white/100 transition-colors duration-300 group"
+                className="text-sm tracking-wide text-white/80 hover:text-white transition-colors duration-300 group"
               >
                 {item.name}
               </a>
@@ -57,7 +76,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 to={item.path}
-                className="relative tracking-wide text-xs hover:text-white/100 transition-colors duration-300 group"
+                className="text-sm tracking-wide text-white/80 hover:text-white transition-colors duration-300 group"
               >
                 {item.name}
               </Link>
@@ -66,23 +85,23 @@ const Header = () => {
         </nav>
 
         {/* Desktop Buttons */}
-        <div className="hidden lg:flex items-center space-x-3">
-          <Link to="/community">
-            {/* <Button className="bg-white text-xs hover:bg-white hover:shadow-md hover:shadow-white/50 transition-all text-black flex items-center duration-300 rounded-full">
-              <Send size={18} className="mr-0" />
+        <div className="hidden lg:flex items-center space-x-4">
+          {/* <Link to="/community">
+            <Button className="bg-transparent border border-white/30 text-white text-xs hover:bg-white/10 hover:text-white hover:shadow-md hover:shadow-white/20 transition-all duration-300 rounded-full px-4 py-2">
+              <Send size={16} className="mr-2" />
               Get Free Guidance
-            </Button> */}
-          </Link>
+            </Button>
+          </Link> */}
           <Button
-            className="bg-white text-xs hover:bg-white hover:shadow-md hover:shadow-white transition-all text-black flex items-center duration-300 rounded-full"
+            className="bg-white text-black text-xs hover:bg-white transition-all duration-300 rounded-full px-4 py-2 flex items-center"
             onClick={openDonation}
           >
-            <Heart size={18} className="mr-2" />
+            <Heart size={16} className="mr-" />
             Support Us
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Menu Button */}
         <button
           className="lg:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors duration-200"
           onClick={() => setIsMenuOpen(true)}
@@ -100,14 +119,15 @@ const Header = () => {
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-black/50 backdrop-blur-lg transition-opacity duration-300 ${
-            isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
+          className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+            isMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setIsMenuOpen(false)}
         />
+
         {/* Sidebar */}
         <div
-          className={`absolute top-0 right-0 h-full w-64 bg-black/80 text-white shadow-lg transform transition-transform duration-300 ${
+          className={`absolute top-0 right-0 h-full w-64 bg-gradient-to-b from-black to-slate-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -120,11 +140,13 @@ const Header = () => {
               <X size={24} />
             </button>
           </div>
+
           <div className="px-6 pb-6 flex justify-center">
             <img src={Logo} alt="Logo" className="h-8" />
           </div>
 
-          <nav className="flex-1 px-6 space-y-2">
+          {/* Mobile Nav */}
+          <nav className="px-6 space-y-1">
             {navItems.map((item) => {
               if (item.path.startsWith("http")) {
                 return (
@@ -133,7 +155,7 @@ const Header = () => {
                     href={item.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                    className="block text-white hover:text-blue-300 font-medium py-3 px-3 rounded-lg transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -144,10 +166,8 @@ const Header = () => {
                 <Link
                   key={item.id}
                   to={item.path}
-                  className="block text-white hover:text-blue-300 font-medium py-2 px-3 rounded-lg transition-colors duration-200"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                  }}
+                  className="block text-white hover:text-blue-300 font-medium py-3 px-3 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
@@ -155,15 +175,16 @@ const Header = () => {
             })}
           </nav>
 
-          <div className="p-6 pt-2 space-y-3">
+          {/* Mobile CTA Buttons */}
+          <div className="p-6 pt-4 space-y-4">
             <Link to="/community" onClick={() => setIsMenuOpen(false)}>
-              <Button className="bg-white text-xs text-black hover:shadow-md hover:shadow-white flex items-center justify-center w-full rounded-full transition-all duration-300">
+              <Button className="w-full bg-white text-black text-xs hover:shadow-lg hover:shadow-white/30 transition-all duration-300 rounded-full py-3 flex items-center justify-center">
                 <Send size={16} className="mr-2" />
                 Get Free Guidance
               </Button>
             </Link>
             <Button
-              className="bg-white text-xs text-black hover:shadow-md hover:shadow-white flex items-center justify-center w-full rounded-full transition-all duration-300"
+              className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs hover:from-red-400 hover:to-pink-400 hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 rounded-full py-3 flex items-center justify-center"
               onClick={() => {
                 openDonation();
                 setIsMenuOpen(false);
