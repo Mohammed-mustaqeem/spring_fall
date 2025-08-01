@@ -77,9 +77,9 @@ const Index = () => {
         <EmergencyNoticeSection />
         {/* <F1VisaGuideSection /> */}
         <AboutUsSection />
-        <PartnersSection />
         {/* <LogoCompetitionSection /> */}
         <StudyUSASection />
+        <PartnersSection />
         <AdminSection />
         <VisaInterviewSection />
         <VisaTimelineSection />
