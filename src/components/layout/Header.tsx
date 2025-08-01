@@ -42,7 +42,6 @@ const Header = () => {
       y: 0,
       opacity: 1,
       duration: 1,
-      delay: .7,
       ease: "power3.in",
       clearProps: "transform", // Prevents transform from lingering
     });
@@ -55,8 +54,10 @@ const Header = () => {
         ref={headerRef}
         className="fixed top-0 left-0 right-0 z-50 mt-5 bg-[#05051a]/80 backdrop-blur-sm px-6 md:mx-24 md:my-8 p-3 flex justify-between items-center rounded-full shadow-lg text-white transition-all duration-300"
       >
-        <div className="flex items-center space-x-4">
-          <img src={Logo} alt="Spring/Fall USA Logo" className="h-8 w-auto" />
+        <div className="flex items-center space-x-4 cursor-pointer">
+          <Link to="/">
+            <img src={Logo} alt="Spring/Fall USA Logo" className="h-8 w-auto"  />
+          </Link>
         </div>
 
         {/* Desktop Navigation */}

@@ -20,7 +20,7 @@ import FAQTab from "./FAQTab";
 
 const F1visaSection = ({ theme }) => {
   return (
-    <section className="text-white py-20 px-4">
+    <section className="text-white py-20 px-4 ">
       {" "}
       {/* Removed overflow-hidden from main section */}
       {/* Centered Heading */}

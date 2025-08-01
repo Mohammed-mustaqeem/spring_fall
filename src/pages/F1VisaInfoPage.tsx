@@ -57,7 +57,7 @@ const F1VisaInfoPage = () => {
     >
       <Header />
 
-      <main className="flex-grow pt-28 bg-gradient-to-b from-slate-900 via-gray-900 to-gray-800">
+      <main className="flex-grow pt-28 bg-black">
         <section className={`py-24 px-4 md:px-8 lg:px-16 text-center `}>
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-white mb-6">
