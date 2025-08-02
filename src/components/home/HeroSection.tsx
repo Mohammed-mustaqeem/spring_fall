@@ -85,23 +85,50 @@ const HeroSection = () => {
     ));
 
   return (
-    <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-blue-950 via-black to-blue-700 overflow-hidden relative min-h-screen flex items-center">
-      {/* Subtle animated grid */}
+    <section className="pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden relative min-h-screen flex items-center">
+      {/* === Solid Black Background === */}
+      <div className="absolute inset-0 bg-black z-0" />
+
+      {/* === Animated Moving Gradient Orbs (Faster & More Visible) === */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Top Left Orb - More Visible Blue Glow */}
+        <div
+          className="w-96 h-96 md:w-[600px] md:h-[600px] absolute rounded-full blur-3xl opacity-80"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.5) 10%, rgba(30, 64, 175, 0.3) 40%, transparent 70%)",
+            top: "20%",
+            left: "20%",
+            transform: "translate(-50%, -50%)",
+            animation: "floatY 14s ease-in-out infinite alternate",
+          }}
+        />
+
+        {/* Bottom Right Orb - Light Cyan Pulse */}
+        <div
+          className="w-80 h-80 md:w-[550px] md:h-[550px] absolute rounded-full blur-3xl opacity-75"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(34, 211, 238, 0.4) 10%, rgba(29, 78, 216, 0.25) 40%, transparent 70%)",
+            bottom: "20%",
+            right: "20%",
+            transform: "translate(50%, 50%)",
+            animation: "floatX 12s ease-in-out infinite alternate-reverse",
+          }}
+        />
+      </div>
+
+      {/* Subtle Grid Overlay */}
       <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(100, 180, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(100, 180, 255, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
         }}
       />
 
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-40 right-10 w-80 h-80 bg-blue-400/8 rounded-full blur-3xl" />
-
+      {/* Main Content */}
       <div className="container-custom mx-auto px-4 relative z-10">
         <div className="text-center flex flex-col items-center">
           {/* Animated Title */}
@@ -123,7 +150,6 @@ const HeroSection = () => {
               <span className="relative z-10 flex items-center gap-2">
                 Get Started <ArrowDown size={18} />
               </span>
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-400 to-blue-600 -z-0 blur-md opacity-0 group-hover:opacity-75 transition-opacity" />
               <div className="absolute inset-0 -z-0 bg-gradient-to-r from-transparent via-white/40 to-transparent scale-x-0 group-hover:scale-x-150 group-hover:animate-shine rounded-3xl transition-transform duration-700" />
             </button>
 
@@ -143,9 +169,9 @@ const HeroSection = () => {
         {/* Unified Stats & Testimonial Card */}
         <div
           ref={statsRef}
-          className="mt-16 mx-auto max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl transition-all duration-700 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,120,255,0.2)] will-change-transform"
+          className="mt-16 mx-auto max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl transition-all duration-700 hover:scale-105 hover:shadow-[0_0_50px_rgba(59,130,246,0.2)] will-change-transform"
         >
-          {/* Inner glow overlay */}
+          {/* Hover glow */}
           <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 bg-gradient-to-br from-blue-400/20 to-transparent blur-xl -z-10 transition-opacity duration-500" />
 
           <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
@@ -179,11 +205,32 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* === Animation Keyframes (Faster & Wider Movement) === */}
+      <style jsx>{`
+        @keyframes floatY {
+          0% {
+            top: 20%;
+            left: 20%;
+          }
+          100% {
+            top: 60%;
+            left: 80%;
+          }
+        }
+        @keyframes floatX {
+          0% {
+            bottom: 20%;
+            right: 20%;
+          }
+          100% {
+            bottom: 60%;
+            right: 80%;
+          }
+        }
+      `}</style>
     </section>
   );
 };
 
 export default HeroSection;
-
-
-
