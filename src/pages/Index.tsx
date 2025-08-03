@@ -69,8 +69,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Header />
-      <NoticeBanner />
-      <DesktopModeCheck />
+      {/* <NoticeBanner />
+      <DesktopModeCheck /> */}
 
       <main className="flex-grow">
         <HeroSection />
