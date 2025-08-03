@@ -78,10 +78,10 @@ const AboutPage = () => {
               Making the F-1 visa journey smoother, transparent, and stress-free for students around the world.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild className="bg-white text-black hover:bg-blue-50 hover:shadow-lg">
+              <Button asChild className="bg-white text-black hover:bg-blue-50 rounded-3xl lg:px-9 hover:bg-white/70 hover:text-black transition hover:shadow-lg">
                 <Link to="/uniportal">Uniportal</Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className=" border-white rounded-3xl hover:bg-white/10 hover:text-white bg-transparent transition">
                 <Link to="/resources">Browse Resources</Link>
               </Button>
             </div>
@@ -192,11 +192,11 @@ const AboutPage = () => {
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
               Whether you're starting your journey or want to help others, we’d love to have you.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+            <div className="flex flex-col items-center sm:flex-row justify-center gap-4">
+              <Button asChild size="lg" className="bg-white text-black hover:text-black rounded-3xl hover:bg-white/80 transition ">
                 <Link to="/register">Join Telegram Group</Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className=" border-white rounded-3xl hover:bg-white/10 hover:text-white bg-transparent transition">
                 <Link to="/visa-experiences">Browse Visa Experiences</Link>
               </Button>
             </div>

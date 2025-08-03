@@ -3,11 +3,10 @@ import { Menu, X, Send, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "../../../src/assets/images/springfall.png";
-import gsap from "gsap";
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
   const paypalDonationUrl =
     "https://www.paypal.com/donate/?hosted_button_id=5VXV68NC6TC9U";
 
@@ -32,26 +31,13 @@ const Header = () => {
     window.open(paypalDonationUrl, "_blank", "noopener,noreferrer");
   };
 
-  // GSAP Animation: Slide down & fade in
-  useEffect(() => {
-    if (!headerRef.current) return;
 
-    gsap.set(headerRef.current, { y: -60, opacity: 0 });
-
-    gsap.to(headerRef.current, {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power3.in",
-      clearProps: "transform", // Prevents transform from lingering
-    });
-  }, []);
 
   return (
     <>
-      {/* Animated Header */}
+     
       <header
-        ref={headerRef}
+   
         className="fixed top-0 left-0 right-0 z-50 mt-5 bg-[#05051a]/80 backdrop-blur-sm px-6 md:mx-24 md:my-8 p-3 flex justify-between items-center rounded-full shadow-lg text-white transition-all duration-300"
       >
         <div className="flex items-center space-x-4 cursor-pointer">

@@ -73,6 +73,8 @@ const AboutCards = () => {
 };
 
 const StyledWrapper = styled.div`
+  /* === Changed: Full background to deep blue === */
+  background: #0000; /* Deep navy blue */
   padding: 6rem 2rem;
   text-align: center;
 
@@ -82,7 +84,7 @@ const StyledWrapper = styled.div`
 
   .card_title {
     font-size: clamp(2rem, 5vw, 5rem);
-    color: hsl(0, 0%, 100%);
+    color: white; /* Keep white for contrast */
     display: block;
     margin-bottom: 0.5rem;
   }
@@ -91,7 +93,7 @@ const StyledWrapper = styled.div`
     margin: 0 auto;
     max-width: 700px;
     font-size: 1rem;
-    color: hsl(0, 0%, 83%);
+    color: #a0bffa; /* Soft blue-white for text */
   }
 
   .cards__container {
@@ -102,11 +104,11 @@ const StyledWrapper = styled.div`
   }
 
   .card {
-    --white: hsl(0, 0%, 100%);
-    --black: hsl(240, 15%, 9%);
-    --paragraph: hsl(0, 0%, 83%);
-    --line: hsl(240, 9%, 17%);
-    --primary: hsl(266, 92%, 58%);
+    --white: #ffffff;
+    --black: #000000;
+    --paragraph: #d0d8f0;
+    --line: #334155;
+    --primary: #3b82f6; /* Tailwind blue-500 */
 
     position: relative;
     display: flex;
@@ -115,20 +117,24 @@ const StyledWrapper = styled.div`
 
     padding: 4rem;
     width: 23rem;
-    background-color: hsla(240, 15%, 9%, 1);
+
+    /* === Changed: Card background to dark blue === */
+    background-color: #0f172a; /* Slate-900 (blue-ish dark) */
     background-image: radial-gradient(
         at 88% 40%,
-        hsla(240, 15%, 9%, 1) 0px,
+        #0f172a 0px,
         transparent 85%
       ),
-      radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
-      radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
-      radial-gradient(at 0% 64%, hsla(263, 93%, 56%, 1) 0px, transparent 85%),
-      radial-gradient(at 41% 94%, hsla(284, 100%, 84%, 1) 0px, transparent 85%),
-      radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%);
+      radial-gradient(at 49% 30%, #0f172a 0px, transparent 85%),
+      radial-gradient(at 14% 26%, #0f172a 0px, transparent 85%),
+      radial-gradient(at 0% 64%, #1d4ed8 0px, transparent 85%), /* blue-800 glow */
+      radial-gradient(at 41% 94%, #60a5fa 0px, transparent 85%), /* blue-400 */
+      radial-gradient(at 100% 99%, #3b82f6 0px, transparent 85%); /* blue-500 */
 
     border-radius: 1rem;
-    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+    box-shadow: 
+      0px -16px 24px 0px rgba(255, 255, 255, 0.1) inset,
+      0 4px 20px rgba(59, 130, 246, 0.1); /* subtle outer glow */
   }
 
   .card .card__border {
@@ -143,8 +149,8 @@ const StyledWrapper = styled.div`
     height: calc(100% + 2px);
     background-image: linear-gradient(
       0deg,
-      hsl(0, 0%, 100%) -50%,
-      hsl(0, 0%, 40%) 100%
+      white -50%,
+      #93c5fd 100% /* Light blue gradient border */
     );
     border-radius: 1rem;
   }
@@ -163,8 +169,8 @@ const StyledWrapper = styled.div`
     background-image: linear-gradient(
       0deg,
       hsla(0, 0%, 100%, 0) 0%,
-      hsl(277, 95%, 60%) 40%,
-      hsl(277, 95%, 60%) 60%,
+      #60a5fa 40%,    /* blue-400 */
+      #3b82f6 60%,    /* blue-500 */
       hsla(0, 0%, 40%, 0) 100%
     );
     animation: rotate 8s linear infinite;
@@ -201,14 +207,14 @@ const StyledWrapper = styled.div`
     align-items: center;
     width: 1rem;
     height: 1rem;
-    background-color: var(--primary);
+    background-color: var(--primary); /* blue-500 */
     border-radius: 50%;
   }
 
   .check_svg {
     width: 1rem;
     height: 1rem;
-    fill: var(--black);
+    fill: white; /* Clean white check */
   }
 
   .list_text {
@@ -235,6 +241,7 @@ const StyledWrapper = styled.div`
 
     .card_title {
       font-size: 2.5rem;
+      color: white;
     }
 
     .card {
@@ -262,6 +269,7 @@ const StyledWrapper = styled.div`
 
     .card_paragraph {
       font-size: 0.95rem;
+      color: #a0bffa;
     }
 
     .list_text {
