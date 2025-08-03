@@ -118,7 +118,7 @@ const HeroSection = () => {
 
       {/* Subtle Grid Overlay */}
       <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 opacity-20 lg:opacity-30  pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
