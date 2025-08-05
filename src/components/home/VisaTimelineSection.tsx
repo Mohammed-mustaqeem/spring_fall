@@ -54,58 +54,65 @@ const VisaTimelineSection = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate heading
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
 
-      // Animate timeline steps
-      gsap.fromTo(
-        stepsRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "back.out(1.1)",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        }
-      );
+      // Animate each step individually
+      stepsRef.current.forEach((el, idx) => {
+        if (!el) return;
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            delay: idx * 0.05,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      });
 
       // Animate CTA
-      gsap.fromTo(
-        ctaRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            once: true,
-          },
-        }
-      );
+      if (ctaRef.current) {
+        gsap.fromTo(
+          ctaRef.current,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ctaRef.current,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -117,7 +124,7 @@ const VisaTimelineSection = () => {
       ref={sectionRef}
       className="py-32 md:py-40 bg-gradient-to-b from-slate-950 via-black to-blue-950 text-white overflow-hidden relative"
     >
-      {/* Subtle animated background */}
+      {/* Background patterns */}
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{
@@ -130,7 +137,7 @@ const VisaTimelineSection = () => {
         }}
       />
 
-      {/* Floating gradient orbs */}
+      {/* Gradient orbs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-32 right-10 w-80 h-80 bg-blue-400/8 rounded-full blur-3xl" />
 
@@ -147,13 +154,11 @@ const VisaTimelineSection = () => {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Central timeline line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/30 to-blue-500/70 transform -translate-x-1/2"></div>
 
           <div className="space-y-16">
             {steps.map((step, idx) => {
               const isLeft = idx % 2 === 0;
-
               return (
                 <div
                   key={idx}
@@ -162,13 +167,9 @@ const VisaTimelineSection = () => {
                     isLeft ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* Circle marker */}
                   <div className="z-10 flex-shrink-0 w-6 h-6 bg-white border-4 border-blue-500 rounded-full shadow-lg"></div>
 
-                  {/* Step card */}
-                  <div
-                    className={`md:w-1/2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-blue-400/40 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group`}
-                  >
+                  <div className="md:w-1/2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-blue-400/40 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group">
                     <div className="flex items-start gap-4">
                       <div className="p-3 bg-blue-500/20 rounded-xl text-blue-300 group-hover:bg-blue-500/30 transition-colors duration-300">
                         {step.icon}

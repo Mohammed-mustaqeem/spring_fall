@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Card from '../common/Cards';
-import CardSection from '../common/CardSection';
 import aboutus from '../../assets/images/aboutus.jpg';
+import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  let navigate = useNavigate();
 
   const imageRef = useRef(null);
   const titleRef1 = useRef(null);
@@ -146,6 +146,7 @@ const AboutUsSection = () => {
             </h2>
 
             <button
+            onClick={()=>navigate('/about')} 
               ref={btnRef}
               className="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full flex items-center justify-center space-x-3 hover:bg-[#000]/70 hover:shadow-md hover:shadow-white/50 transition-all"
             >
@@ -191,11 +192,7 @@ const AboutUsSection = () => {
             <Card />
           </div>
         </div>
-
-        {/* Stats Counter Section */}
-        <div ref={statsRef}>
-          <CardSection />
-        </div>
+    
       </div>
     </section>
   );

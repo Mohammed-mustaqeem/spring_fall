@@ -19,6 +19,7 @@ import DonationSection from '@/components/home/DonationSection';
 import DesktopModeCheck from '@/components/common/DesktopModeCheck';
 import F1VisaGuideSection from '@/components/home/F1VisaGuideSection';
 import AboutUsSection from '@/components/home/AboutUsSection';
+import GlobeSection from '@/components/home/GlobeSection';
 
 // SEO metadata for the home page
 const SEO = {
@@ -75,9 +76,8 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <EmergencyNoticeSection />
-        {/* <F1VisaGuideSection /> */}
         <AboutUsSection />
-        {/* <LogoCompetitionSection /> */}
+        <GlobeSection/>
         <StudyUSASection />
         <PartnersSection />
         <AdminSection />
