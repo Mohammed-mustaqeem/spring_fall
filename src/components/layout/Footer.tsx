@@ -169,43 +169,57 @@ const Footer = () => {
             <div className="group relative">
               {/* Glow Effect on Hover */}
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur opacity-0 group-hover:opacity-75 transition duration-500"></div>
-              <img
-                src={logo} // Make sure `logo` is imported correctly in your component
-                alt="DEVXORA - Web & UX Studio"
-                className="relative w-16 h-16 rounded-full cursor-pointer border-2 border-gray-600 group-hover:border-transparent transition-all duration-300 shadow-lg group-hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] object-cover"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.src =
-                    "https://placehold.co/48x48/1e293b/6366f1?text=DX"; // Fallback if logo fails
-                }}
-              />
+              <a
+                href="http://devxora.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-block h-16"
+              >
+                {/* Image */}
+                <img
+                  src={logo}
+                  alt="DEVXORA - Web & UX Studio"
+                  className="w-full h-full rounded-full object-cover border-2 border-gray-600 transition-all duration-300 shadow-lg group-hover:border-transparent group-hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://placehold.co/48x48/1e293b/6366f1?text=DX";
+                  }}
+                />
+
+                {/* Overlay Text at Top */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 px-2 py-2 text-gray-300 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                  Visit Site
+                </div>
+              </a>
             </div>
 
             {/* Social Icons with Real DEVXORA Links */}
             <div className="flex space-x-4">
               {[
                 {
+                  icon: Instagram,
+                  color: "hover:text-pink-500",
+                  href: "https://www.instagram.com/dev_xora?igsh=dXExazNqZXl4amhi", // ✅ Your IG
+                  label: "Instagram",
+                },
+                {
                   icon: Facebook,
                   color: "hover:text-blue-500",
-                  href: "https://www.facebook.com/devxora", // ✅ Your FB
+                  href: "https://www.facebook.com/share/1CwsQacNp4/", // ✅ Your FB
                   label: "Facebook",
                 },
                 {
                   icon: Twitter,
                   color: "hover:text-blue-400",
-                  href: "https://twitter.com/devxora", // ✅ Your X/Twitter
+                  href: "https://x.com/TeamDevxora?t=BQZMYOrKkv3SUKnK_E8LVw&s=09", // ✅ Your X/Twitter
                   label: "Twitter",
                 },
-                {
-                  icon: Instagram,
-                  color: "hover:text-pink-500",
-                  href: "https://www.instagram.com/devxora", // ✅ Your IG
-                  label: "Instagram",
-                },
+
                 {
                   icon: Linkedin,
                   color: "hover:text-blue-600",
-                  href: "https://www.linkedin.com/company/devxora", // ✅ Your LinkedIn
+                  href: "https://www.linkedin.com/in/devxora-a5a98135a/", // ✅ Your LinkedIn
                   label: "LinkedIn",
                 },
               ].map((social, idx) => (
