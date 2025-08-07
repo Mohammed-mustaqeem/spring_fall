@@ -63,6 +63,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 to={item.path}
+                onClick={()=>{window.scrollTo({top:0,behavior:'smooth'})}}
                 className="text-sm tracking-wide text-white/80 hover:text-white transition-colors duration-300 group"
               >
                 {item.name}
@@ -73,12 +74,7 @@ const Header = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex items-center space-x-4">
-          {/* <Link to="/community">
-            <Button className="bg-transparent border border-white/30 text-white text-xs hover:bg-white/10 hover:text-white hover:shadow-md hover:shadow-white/20 transition-all duration-300 rounded-full px-4 py-2">
-              <Send size={16} className="mr-2" />
-              Get Free Guidance
-            </Button>
-          </Link> */}
+     
           <Button
             className="bg-white text-black text-xs hover:bg-white transition-all duration-300 rounded-full px-4 py-2 flex items-center"
             onClick={openDonation}

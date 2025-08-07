@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown, Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import studentImg from '../../assets/images/student.jpg'
 import gsap from "gsap";
 
 const HeroSection = () => {
@@ -193,14 +194,14 @@ const HeroSection = () => {
             {/* Testimonial */}
             <div className="flex-1">
               <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                src={studentImg}
                 alt="Happy student"
                 className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg mx-auto md:mx-0"
               />
               <p className="text-white text-sm mt-3 leading-relaxed font-medium">
                 "Spring/Fall USA helped me achieve my dream of studying in the US!"
               </p>
-              <p className="text-blue-200 text-xs mt-1">– Maria, Computer Science Student</p>
+              <p className="text-blue-200 text-xs mt-1">– Alan, Computer Science Student</p>
             </div>
           </div>
         </div>

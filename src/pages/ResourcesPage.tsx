@@ -388,7 +388,10 @@ const ResourcesPage = () => {
                   >
                     <Button
                       variant="outline"
-                      className="w-full border-blue-500/50 text-blue-400 hover:bg-blue-900/30 hover:border-blue-400 group"
+                      className="w-full bg-white/90 backdrop-blur-sm text-black rounded-3xl 
+ hover:bg-white hover:shadow-lg 
+ transition-all duration-300 ease-in-out 
+ group"
                     >
                       Visit Website
                       <ExternalLink
