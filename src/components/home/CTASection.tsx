@@ -58,7 +58,7 @@ const CTASection = () => {
         <p className="mt-10 text-sm text-gray-500">
           Join over{" "}
           <span className="text-white font-semibold">
-            10,000+ international students
+            1,00,000+ international students
           </span>{" "}
           achieving success with Spring/Fall USA.
         </p>

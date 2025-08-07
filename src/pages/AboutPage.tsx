@@ -122,7 +122,7 @@ const AboutPage = () => {
               {[
                 { num: "100K+", label: "Students Helped", icon: Users, color: "blue" },
                 { num: "5+", label: "Countries", icon: Globe, color: "green" },
-                { num: "1,000+", label: "Visa Experiences", icon: MessageCircle, color: "purple" },
+                { num: "40,000+", label: "Visa Experiences", icon: MessageCircle, color: "purple" },
                 { num: "3", label: "University Partners", icon: School, color: "yellow" },
               ].map((stat, i) => (
                 <div key={i} className="stat-item bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:scale-105 transition-transform duration-300">

@@ -4,6 +4,7 @@ import { Crown, Shield, UserCheck } from "lucide-react";
 import mukeshImg from "@/assets/images/mukesh.png";
 import heluuImg from "@/assets/images/original_heluu.png";
 import manojImg from "@/assets/images/manoj.jpg";
+import diwash from "@/assets/images/Diwash-Dahal.jpeg"
 
 const admins = [
   {
@@ -12,6 +13,16 @@ const admins = [
     description:
       "Leading the vision for F-1 visa guidance and brand collaboration",
     image: mukeshImg,
+    fallback: "MP",
+    icon: Crown,
+    color: "bg-yellow-500",
+  },
+  {
+    name: "Diwash Dahal",
+    role: "Founder",
+    description:
+      "Leading the vision for F-1 visa guidance and brand collaboration",
+    image: diwash,
     fallback: "MP",
     icon: Crown,
     color: "bg-yellow-500",

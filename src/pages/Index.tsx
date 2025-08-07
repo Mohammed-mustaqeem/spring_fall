@@ -20,6 +20,8 @@ import DesktopModeCheck from '@/components/common/DesktopModeCheck';
 import F1VisaGuideSection from '@/components/home/F1VisaGuideSection';
 import AboutUsSection from '@/components/home/AboutUsSection';
 import GlobeSection from '@/components/home/GlobeSection';
+import ScrollToTop from '@/components/common/ScrollUp';
+
 
 // SEO metadata for the home page
 const SEO = {
@@ -69,6 +71,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      <ScrollToTop />
       <Header />
       {/* <NoticeBanner />
       <DesktopModeCheck /> */}

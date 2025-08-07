@@ -9,6 +9,7 @@ import ukentucyImg from "@/assets/images/ukentucy.png";
 import jackImg from "@/assets/images/jack.png";
 import lissaImg from "@/assets/images/lissa.png";
 import yvetteImg from "@/assets/images/yvette.png";
+import duolingo from "@/assets/images/logo/duolingo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,9 @@ const PartnersSection: React.FC = () => {
   const uniCardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const officerCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [hoveredUniversity, setHoveredUniversity] = useState<number | null>(null);
+  const [hoveredUniversity, setHoveredUniversity] = useState<number | null>(
+    null
+  );
   const [hoveredOfficer, setHoveredOfficer] = useState<number | null>(null);
 
   useEffect(() => {
@@ -50,7 +53,9 @@ const PartnersSection: React.FC = () => {
         );
 
         // Filter out null refs before animating
-        const validUniCards = uniCardsRef.current.filter((el): el is HTMLDivElement => el !== null);
+        const validUniCards = uniCardsRef.current.filter(
+          (el): el is HTMLDivElement => el !== null
+        );
         gsap.fromTo(
           validUniCards,
           { opacity: 0, y: 60, autoAlpha: 0 },
@@ -69,7 +74,9 @@ const PartnersSection: React.FC = () => {
           }
         );
 
-        const validOfficerCards = officerCardsRef.current.filter((el): el is HTMLDivElement => el !== null);
+        const validOfficerCards = officerCardsRef.current.filter(
+          (el): el is HTMLDivElement => el !== null
+        );
         gsap.fromTo(
           validOfficerCards,
           { opacity: 0, y: 60, autoAlpha: 0 },
@@ -130,7 +137,8 @@ const PartnersSection: React.FC = () => {
       name: "Arkansas State University",
       logo: arkansasImg,
       website: "https://www.astate.edu/",
-      description: "A vibrant campus community with comprehensive academic programs",
+      description:
+        "A vibrant campus community with comprehensive academic programs",
     },
     {
       name: "University of Kentucky",
@@ -142,8 +150,10 @@ const PartnersSection: React.FC = () => {
       name: "Roanoke College",
       logo: roanokeImg,
       website: "https://www.roanoke.edu/",
-      description: "A private liberal arts college in the beautiful Roanoke Valley",
-      newPrograms: "Launched nine new undergraduate and one new graduate program in fall 2024. From finance to marketing to cannabis studies.",
+      description:
+        "A private liberal arts college in the beautiful Roanoke Valley",
+      newPrograms:
+        "Launched nine new undergraduate and one new graduate program in fall 2024. From finance to marketing to cannabis studies.",
     },
   ];
 
@@ -169,6 +179,21 @@ const PartnersSection: React.FC = () => {
       promo: "SPRINGFALL20 - 20% OFF",
       description: "Expert in student visa interview preparation",
     },
+  ];
+
+  const affiliates = [
+    { id: "motaword", 
+      name: "Motaword", 
+      logo: duolingo },
+    { id: "aiea", name: "AIEA", logo: "/logos/aiea.png" },
+    { id: "airc", name: "AIRC", logo: "/logos/airc.png" },
+    {
+      id: "immigration-jobs",
+      name: "Immigration Jobs Talk Show",
+      logo: "/logos/immigration-jobs.png",
+    },
+    { id: "mpower", name: "MPOWER Financing", logo: "/logos/mpower.png" },
+    // Add more if needed, or keep 4–5
   ];
 
   return (
@@ -199,8 +224,12 @@ const PartnersSection: React.FC = () => {
             </h2>
           </div>
           <div className="w-20 h-1 bg-gradient-to-r from-visa-blue to-transparent mx-auto mb-5" />
-          <p ref={paraRef} className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed opacity-0">
-            Trusted partnerships that empower students with expert guidance, exclusive resources, and seamless pathways to F-1 visa success.
+          <p
+            ref={paraRef}
+            className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed opacity-0"
+          >
+            Trusted partnerships that empower students with expert guidance,
+            exclusive resources, and seamless pathways to F-1 visa success.
           </p>
         </div>
 
@@ -218,12 +247,22 @@ const PartnersSection: React.FC = () => {
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="bg-white rounded-full h-32 w-32 p-4 flex items-center justify-center shadow-lg mb-5 group-hover:scale-105 transition-transform duration-300">
-                    <img src={uni.logo} alt={uni.name} className="object-contain h-20 group-hover:rotate-3 transition-transform duration-300" />
+                    <img
+                      src={uni.logo}
+                      alt={uni.name}
+                      className="object-contain h-20 group-hover:rotate-3 transition-transform duration-300"
+                    />
                   </div>
-                  <h4 className="text-xl font-bold group-hover:text-visa-blue transition-colors duration-300">{uni.name}</h4>
-                  <p className="text-sm text-gray-300 mt-3 min-h-[60px] leading-relaxed">{uni.description}</p>
+                  <h4 className="text-xl font-bold group-hover:text-visa-blue transition-colors duration-300">
+                    {uni.name}
+                  </h4>
+                  <p className="text-sm text-gray-300 mt-3 min-h-[60px] leading-relaxed">
+                    {uni.description}
+                  </p>
                   {uni.name === "Roanoke College" && (
-                    <p className="text-xs text-visa-blue mt-2 italic border-t border-visa-blue/30 pt-2">{uni.newPrograms}</p>
+                    <p className="text-xs text-visa-blue mt-2 italic border-t border-visa-blue/30 pt-2">
+                      {uni.newPrograms}
+                    </p>
                   )}
                   <a
                     href={uni.website}
@@ -231,7 +270,11 @@ const PartnersSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-visa-blue hover:text-visa-lightblue text-sm mt-5 font-medium transition-colors duration-300"
                   >
-                    Visit Website <ExternalLink size={14} className="group-hover:rotate-6 transition-transform" />
+                    Visit Website{" "}
+                    <ExternalLink
+                      size={14}
+                      className="group-hover:rotate-6 transition-transform"
+                    />
                   </a>
                 </div>
               </div>
@@ -268,10 +311,14 @@ const PartnersSection: React.FC = () => {
                   >
                     {officer.website} <ExternalLink size={12} />
                   </a>
-                  <p className="text-sm text-gray-300 mt-4 mb-3 leading-relaxed">{officer.description}</p>
+                  <p className="text-sm text-gray-300 mt-4 mb-3 leading-relaxed">
+                    {officer.description}
+                  </p>
                   <span
                     className={`inline-block px-4 py-2 text-sm font-bold rounded-full bg-gradient-to-r from-visa-blue to-visa-navy text-white transition-all duration-500 transform ${
-                      hoveredOfficer === index ? "opacity-100 scale-105" : "opacity-0 scale-90"
+                      hoveredOfficer === index
+                        ? "opacity-100 scale-105"
+                        : "opacity-0 scale-90"
                     }`}
                   >
                     {officer.promo}
@@ -283,7 +330,7 @@ const PartnersSection: React.FC = () => {
         </div>
 
         {/* Quote */}
-        <div ref={quoteRef} className="text-center max-w-4xl mx-auto mt-28 relative px-8 opacity-0">
+        {/* <div ref={quoteRef} className="text-center max-w-4xl mx-auto mt-28 relative px-8 opacity-0">
           <blockquote className="text-gray-200 text-2xl md:text-xl font-light leading-relaxed ">
             “Spring/Fall USA has been an invaluable resource for our international students seeking F-1 visas. Their personalized coaching and insider expertise make a real difference.”
           </blockquote>
@@ -293,7 +340,31 @@ const PartnersSection: React.FC = () => {
           </cite>
           <span className="absolute text-8xl text-white opacity-10 top-[-40px] left-2 select-none">“</span>
           <span className="absolute text-8xl text-white opacity-10 bottom-[-50px] right-2 select-none">”</span>
-        </div>
+        </div> */}
+        <section className=" py-16 px-4">
+          <div className="container mx-auto text-center">
+            {/* Section Title */}
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12">
+              Affiliates
+            </h2>
+
+            {/* Logos Row */}
+            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+              {affiliates.map((affiliate) => (
+                <div
+                  key={affiliate.id}
+                  className="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100"
+                >
+                  <img
+                    src={affiliate.logo}
+                    alt={`${affiliate.name} Logo`}
+                    className="h-14 sm:h-10 lg:h-24 w-auto object-contain filter"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* Floating Accents */}

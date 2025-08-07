@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, Send, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Logo from "../../../src/assets/images/springfall.png";
+import Logo from "../../../src/assets/images/logo/springfall.png";
 
 
 const Header = () => {
