@@ -10,6 +10,9 @@ import jackImg from "@/assets/images/jack.png";
 import lissaImg from "@/assets/images/lissa.png";
 import yvetteImg from "@/assets/images/yvette.png";
 import duolingo from "@/assets/images/logo/duolingo.png";
+import qatar from "@/assets/images/logo/Qatar_Airways.png"
+import devxora from "@/assets/images/logo/wesiteLogo.png"
+import nbc from "@/assets/images/logo/nbc.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -182,17 +185,14 @@ const PartnersSection: React.FC = () => {
   ];
 
   const affiliates = [
-    { id: "motaword", 
-      name: "Motaword", 
-      logo: duolingo },
-    { id: "aiea", name: "AIEA", logo: "/logos/aiea.png" },
-    { id: "airc", name: "AIRC", logo: "/logos/airc.png" },
+    { id: "motaword", name: "Motaword", logo: duolingo },
+    { id: "aiea", name: "AIEA", logo: qatar },
+    { id: "airc", name: "AIRC", logo: devxora },
     {
       id: "immigration-jobs",
       name: "Immigration Jobs Talk Show",
-      logo: "/logos/immigration-jobs.png",
+      logo: nbc,
     },
-    { id: "mpower", name: "MPOWER Financing", logo: "/logos/mpower.png" },
     // Add more if needed, or keep 4–5
   ];
 
@@ -345,7 +345,7 @@ const PartnersSection: React.FC = () => {
           <div className="container mx-auto text-center">
             {/* Section Title */}
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12">
-              Affiliates
+              Key Supporters
             </h2>
 
             {/* Logos Row */}
@@ -353,12 +353,12 @@ const PartnersSection: React.FC = () => {
               {affiliates.map((affiliate) => (
                 <div
                   key={affiliate.id}
-                  className="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100"
+                  className="flex-shrink-0 hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100 "
                 >
                   <img
                     src={affiliate.logo}
                     alt={`${affiliate.name} Logo`}
-                    className="h-14 sm:h-10 lg:h-24 w-auto object-contain filter"
+                    className="w-52 h-28 object-contain filter brightness-0 invert"
                   />
                 </div>
               ))}
