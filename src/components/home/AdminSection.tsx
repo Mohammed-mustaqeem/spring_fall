@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Crown, Shield, UserCheck } from "lucide-react";
 import mukeshImg from "@/assets/images/mukesh.png";
-import heluuImg from "@/assets/images/original_heluu.png";
+import heluuImg from "@/assets/images/bipin.jpeg";
 import manojImg from "@/assets/images/manoj.jpg";
 import diwash from "@/assets/images/Diwash-Dahal.jpeg"
 
@@ -17,6 +17,15 @@ const admins = [
     icon: Crown,
     color: "bg-yellow-500",
   },
+   {
+    name: "Bipin Pandey",
+    role: "Founder",
+    description: "Expert in visa processes and student guidance",
+    image: heluuImg,
+    fallback: "BP",
+    icon: Crown,
+    color: "bg-yellow-500",
+  },
   {
     name: "Diwash Dahal",
     role: "Founder",
@@ -27,15 +36,7 @@ const admins = [
     icon: Crown,
     color: "bg-yellow-500",
   },
-  {
-    name: "Bipin Pandey",
-    role: "Co-founder",
-    description: "Expert in visa processes and student guidance",
-    image: heluuImg,
-    fallback: "BP",
-    icon: Shield,
-    color: "bg-blue-500",
-  },
+ 
   {
     name: "Manoj Dhakal",
     role: "Administrative Head",
@@ -88,13 +89,13 @@ const AdminSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-1 lg:gap:1 max-w-6xl mx-auto flex-wrap ">
           {admins.map((admin, index) => {
             const Icon = admin.icon;
             return (
               <div
                 key={admin.name}
-                className={`relative group rounded-2xl p-8 border border-white/10 backdrop-blur-lg bg-white/5 shadow-2xl transition-all duration-700 ${
+                className={`relative group rounded-xl p-8 border border-white/10 backdrop-blur-lg bg-white/5 shadow-2xl transition-all duration-700 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -108,7 +109,7 @@ const AdminSection = () => {
                     <AvatarImage
                       src={admin.image}
                       alt={admin.name}
-                      className="object-cover"
+                      className="object-cover object-center"
                     />
                     <AvatarFallback>{admin.fallback}</AvatarFallback>
                   </Avatar>
