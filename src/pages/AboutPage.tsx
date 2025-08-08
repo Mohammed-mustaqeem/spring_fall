@@ -157,8 +157,38 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+          <div>
+          <AdminSection />
+        </div>
 
-        {/* Testimonials */}
+       
+
+
+        {/* Embedded Components */}
+        <div>
+          <AboutCards />
+        </div>
+
+        
+        {/* CTA */}
+        <section className="py-24 bg-black">
+          <div className="container-custom mx-auto px-4 text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Join Our Community</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+              Whether you're starting your journey or want to help others, we’d love to have you.
+            </p>
+            <div className="flex flex-col items-center sm:flex-row justify-center gap-4">
+              <Button asChild size="lg" className="bg-white text-black hover:text-black rounded-3xl hover:bg-white/80 transition ">
+                <Link to="/register">Join Telegram Group</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className=" border-white rounded-3xl hover:bg-white/10 hover:text-white bg-transparent transition">
+                <Link to="/visa-experiences">Browse Visa Experiences</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+         {/* Testimonials */}
         <section className="py-24 bg-gradient-to-b from-black to-blue-950">
           <div className="container-custom mx-auto px-4 max-w-4xl">
             <div className="text-center mb-12">
@@ -184,32 +214,7 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="py-24 bg-black">
-          <div className="container-custom mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Join Our Community</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-              Whether you're starting your journey or want to help others, we’d love to have you.
-            </p>
-            <div className="flex flex-col items-center sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-white text-black hover:text-black rounded-3xl hover:bg-white/80 transition ">
-                <Link to="/register">Join Telegram Group</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className=" border-white rounded-3xl hover:bg-white/10 hover:text-white bg-transparent transition">
-                <Link to="/visa-experiences">Browse Visa Experiences</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Embedded Components */}
-        <div>
-          <AboutCards />
-        </div>
-        <div>
-          <AdminSection />
-        </div>
+      
       </main>
 
       <Footer />
