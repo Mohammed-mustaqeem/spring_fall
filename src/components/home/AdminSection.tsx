@@ -39,12 +39,12 @@ const admins = [
  
   {
     name: "Manoj Dhakal",
-    role: "Administrative Head",
+    role: "Founder",
     description: "Managing operations and student support",
     image: manojImg,
     fallback: "MD",
-    icon: UserCheck,
-    color: "bg-green-500",
+    icon: Crown,
+    color: "bg-yellow-500",
   },
 ];
 
