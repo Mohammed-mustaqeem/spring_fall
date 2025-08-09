@@ -20,7 +20,7 @@ const admins = [
    {
     name: "Bipin Pandey",
     role: "Founder",
-    description: "Expert in visa processes and student guidance",
+    description: "Connecting universities with strategic marketing to drive growth.",
     image: heluuImg,
     fallback: "BP",
     icon: Crown,

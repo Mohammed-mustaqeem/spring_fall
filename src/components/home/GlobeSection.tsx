@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import globeBg from '@/assets/images/globe-bg.jpg';
 
 const GlobeSection: React.FC = () => {
   const containerVariants = {
@@ -26,32 +27,33 @@ const GlobeSection: React.FC = () => {
 
   return (
     <section className="relative h-screen w-full bg-black text-white overflow-hidden">
-      {/* Background Image with Slight Top Crop (Modern Look) */}
+      {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/src/assets/images/globe-bg.jpg" // ⚠️ Note: Vite may require dynamic import or public folder
+          src={globeBg}
           alt="Global Network"
-          className="w-full h-full object-cover object-center scale-110"
-          style={{ transform: 'scale(1.1)' }} // Ensures consistent scale
+          className="w-full h-full object-cover object-center"
+          style={{ transform: 'scale(1.15)', transformOrigin: 'center' }}
+          loading="lazy"
         />
-        {/* Gradient Overlay: Fade from transparent to black at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full px-4 sm:px-6 lg:px-8 pt-28 pb-36">
-        {/* Title */}
+      <div className="relative z-10 flex flex-col h-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-96">
+        {/* Title Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px 0px -50px 0px' }}
           variants={titleVariants}
-          className="max-w-4xl mx-auto text-center mb-8"
+          className="max-w-4xl mx-auto text-center mb-8 sm:mb-12"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight">
             Global Support for Students
           </h1>
-          <p className="text-base sm:text-lg md:text-xl mt-4 opacity-90 max-w-xl md:max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg mt-3 sm:mt-4 opacity-90 max-w-xs sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed px-2">
             A U.S.-based nonprofit empowering international students with accurate visa guidance, resources, and support — wherever you are.
           </p>
         </motion.div>
@@ -62,7 +64,7 @@ const GlobeSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto"
+          className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto w-full"
         >
           {[
             {
@@ -85,13 +87,13 @@ const GlobeSection: React.FC = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ y: -6 }}
-              className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl p-5 text-center transition-all duration-300 hover:bg-white/15 hover:shadow-2xl hover:shadow-blue-800/10"
+              whileHover={{ y: -8 }}
+              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-4 sm:p-5 text-center transition-all  duration-300 hover:bg-white/15 hover:shadow-2xl hover:shadow-blue-800/20 hover:scale-105"
             >
-              <h3 className="text-xl font-semibold mb-2.5 bg-gradient-to-r from-blue-50 to-purple-100 bg-clip-text text-transparent">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 bg-gradient-to-r from-blue-50 to-purple-100 bg-clip-text text-transparent">
                 {card.title}
               </h3>
-              <p className="text-sm md:text-base opacity-90 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base opacity-90 leading-relaxed">
                 {card.description}
               </p>
             </motion.div>
