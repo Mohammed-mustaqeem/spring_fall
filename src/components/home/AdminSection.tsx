@@ -89,7 +89,7 @@ const AdminSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-1 lg:gap:1 max-w-6xl mx-auto flex-wrap ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-1 lg:gap-3 max-w-6xl mx-auto flex-wrap ">
           {admins.map((admin, index) => {
             const Icon = admin.icon;
             return (

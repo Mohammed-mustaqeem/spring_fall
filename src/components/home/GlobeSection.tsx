@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import globeBg from '@/assets/images/globe-bg.jpg';
+import globeBg from '@/assets/images/globe.bg.svg';
 
 const GlobeSection: React.FC = () => {
   const containerVariants = {
@@ -26,29 +26,33 @@ const GlobeSection: React.FC = () => {
   };
 
   return (
-    <section className="relative h-screen w-full bg-black text-white overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={globeBg}
-          alt="Global Network"
-          className="w-full h-full object-cover object-center"
-          style={{ transform: 'scale(1.15)', transformOrigin: 'center' }}
-          loading="lazy"
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
+    <section className="relative h-auto w-full bg-black text-white overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-0"></div>
+
+      {/* Responsive Globe - Centered at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0 pointer-events-none">
+<img
+  src={globeBg}
+  alt="Global Network"
+  className="w-[120vw] sm:w-[90vw] md:w-[70vw] lg:w-[1000px] h-20 lg:h-auto max-w-full"
+  style={{
+    filter: 'brightness(1.2) contrast(1.1)',
+    opacity: 0.9,
+  }}
+  loading="lazy"
+/>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-96">
+      <div className="relative z-10 flex flex-col h-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
         {/* Title Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px 0px -50px 0px' }}
           variants={titleVariants}
-          className="max-w-4xl mx-auto text-center mb-8 sm:mb-12"
+          className="max-w-4xl mx-auto text-center mb-6 sm:mb-10"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight">
             Global Support for Students
@@ -64,7 +68,7 @@ const GlobeSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto w-full"
+          className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 max-w-6xl mx-auto w-full px-4"
         >
           {[
             {
@@ -88,9 +92,9 @@ const GlobeSection: React.FC = () => {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -8 }}
-              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-4 sm:p-5 text-center transition-all  duration-300 hover:bg-white/15 hover:shadow-2xl hover:shadow-blue-800/20 hover:scale-105"
+              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-3 sm:p-5 text-center transition-all duration-300 hover:bg-white/15 hover:shadow-2xl hover:shadow-blue-800/20 hover:scale-105"
             >
-              <h3 className="text-lg sm:text-xl font-semibold mb-2 bg-gradient-to-r from-blue-50 to-purple-100 bg-clip-text text-transparent">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 bg-gradient-to-r from-blue-50 to-purple-100 bg-clip-text text-transparent">
                 {card.title}
               </h3>
               <p className="text-xs sm:text-sm md:text-base opacity-90 leading-relaxed">
@@ -99,6 +103,9 @@ const GlobeSection: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Bottom Spacer */}
+        <div className="h-16 sm:h-24 md:h-32 lg:h-40 xl:h-48"></div>
       </div>
     </section>
   );

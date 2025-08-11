@@ -117,7 +117,7 @@ const Header = () => {
           <div className="p-4 flex justify-end">
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors duration-200"
+              className="p-2  hover:bg-white/10 rounded-full transition-colors duration-200"
               aria-label="Close menu"
             >
               <X size={24} />

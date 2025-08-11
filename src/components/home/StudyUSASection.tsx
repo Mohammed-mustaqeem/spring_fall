@@ -122,7 +122,7 @@ const StudyUSASection = () => {
       <div className="absolute bottom-20 right-6 w-72 h-72 bg-blue-400/8 rounded-full blur-3xl" />
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-10 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side: Text & Cards */}
           <div className="space-y-6">
